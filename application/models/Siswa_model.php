@@ -65,7 +65,8 @@ class Siswa_model extends CI_Model
     public function save()
     {
         $post = $this->input->post();
-        $this->id_siswa = md5(uniqid());
+        // $this->id_siswa = md5(uniqid());
+        $this->id_siswa = mt_rand();
         $this->nisn = $post["nisn"];
         $this->nis = $post["nis"];
         $this->nama = $post["nama"];

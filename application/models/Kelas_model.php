@@ -22,7 +22,7 @@ class Kelas_model extends CI_Model
 
     public function getAll()
     {
-        return $this->db->get($this->_table)->result();
+        return $this->db->order_by("nama_kelas", "asc")->get($this->_table)->result();
     }
     
     public function getById($id)
@@ -33,7 +33,8 @@ class Kelas_model extends CI_Model
     public function save()
     {
         $post = $this->input->post();
-        $this->id_kelas = uniqid();
+        // $this->id_kelas = md5(uniqid(rand(9999,99999999), true));
+        $this->id_kelas = mt_rand();
         $this->nama_kelas = $post["nama_kelas"];
         $this->kompetensi_keahlian = $post["kompetensi_keahlian"];
         return $this->db->insert($this->_table, $this);

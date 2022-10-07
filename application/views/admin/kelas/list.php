@@ -124,7 +124,7 @@
 							<!-- Actions -->
 							<div class="col-sm-6 col-12 text-sm-end">
 								<div class="mx-n1">
-									<a href="<?php echo site_url('siswa/add') ?>" class="btn d-inline-flex btn-sm btn-primary mx-1">
+									<a href="<?php echo site_url('kelas/add') ?>" class="btn d-inline-flex btn-sm btn-primary mx-1">
 										<span class=" pe-2">
 											<i class="bi bi-plus"></i>
 										</span>
@@ -141,55 +141,32 @@
 				<div class="container-fluid">
 					<div class="card mb-7">
 						<div class="card-header">
-							<h5 class="mb-0">Siswa</h5>
+							<h5 class="mb-0">Kelas</h5>
 						</div>
 						<div class="table-responsive">
 							<table class="table table-hover table-nowrap">
 								<thead class="table-light">
 									<tr>
-										<th scope="col">Nama Lengkap</th>
-										<th scope="col">NISN</th>
-										<th scope="col">NIS</th>
-										<th scope="col">Kelas</th>
-										<th scope="col">Alamat</th>
-										<th scope="col">No. Telpon</th>
-										<th scope="col">Tahun Ajaran</th>
+										<th scope="col">Nama Kelas</th>
+										<th scope="col">Kompetensi Keahlian</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
-                                    <?php foreach ($siswas as $siswa): ?>
+                                    <?php foreach ($kelass as $kelas): ?>
 									<tr>
 										<td>
-											<img alt=""
-												src="<?php echo base_url('upload/siswa/'.$siswa->gambar) ?>"
-												class="avatar avatar-sm rounded-circle me-2">
 											<a class="text-heading font-semibold" href="#">
-												<?php echo $siswa->nama ?>
+												<?php echo $kelas->nama_kelas ?>
 											</a>
 										</td>
 										<td>
-                                            <?php echo $siswa->nisn ?>
-										</td>
-										<td>
-                                            <?php echo $siswa->nis ?>
-										</td>
-										<td>
-                                            <?php echo $siswa->id_kelas ?>
-										</td>
-										<td>
-                                            <?php echo $siswa->alamat ?>
-										</td>
-										<td>
-                                            <?php echo $siswa->no_telepon ?>
-										</td>
-										<td>
-                                            <?php echo $siswa->id_spp ?>
+                                            <?php echo $kelas->kompetensi_keahlian ?>
 										</td>
 										<td class="text-end">
-											<a href="<?php echo site_url('siswa/edit/'.$siswa->id_siswa) ?>" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i></a>
+											<a href="<?php echo site_url('kelas/edit/'.$kelas->id_kelas) ?>" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i></a>
 											<a onclick="return confirm('Are you sure you want to delete this item?');"
-											 href="<?php echo site_url('siswa/delete/'.$siswa->id_siswa) ?>" class="btn btn-sm btn-square btn-neutral text-danger-hover"><i class="bi bi-trash"></i></a>
+											 href="<?php echo site_url('kelas/delete/'.$kelas->id_kelas) ?>" class="btn btn-sm btn-square btn-neutral text-danger-hover"><i class="bi bi-trash"></i></a>
 										</td>
 									</tr>
                                     <?php endforeach; ?>

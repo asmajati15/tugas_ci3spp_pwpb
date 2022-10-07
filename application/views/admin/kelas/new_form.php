@@ -129,7 +129,7 @@
 							<!-- Actions -->
 							<div class="col-sm-6 col-12 text-sm-end">
 								<div class="mx-n1">
-									<a href="<?php echo site_url('siswa') ?>" class="btn d-inline-flex btn-sm btn-primary mx-1">
+									<a href="<?php echo site_url('kelas') ?>" class="btn d-inline-flex btn-sm btn-primary mx-1">
 										<span class=" pe-2">
 											<i class="bi bi-arrow-left"></i>
 										</span>
@@ -149,76 +149,25 @@
 							<h5 class="mb-0">Form Add</h5></h5>
 						</div>
 						<div class="card-body">
-                        <form action="<?php echo site_url('siswa/add') ?>" method="post" enctype="multipart/form-data" >
+                        <form action="<?php echo site_url('kelas/add') ?>" method="post" enctype="multipart/form-data" >
 							
                             <div class="form-group mb-4">
-								<label for="nisn">NISN</label>
-								<input class="form-control <?php echo form_error('nisn') ? 'is-invalid':'' ?>"
-								 type="number" name="nisn" min="0" placeholder="Example: 006321445" />
+								<label for="nama_kelas">Kama Kelas</label>
+								<input class="form-control <?php echo form_error('nama_kelas') ? 'is-invalid':'' ?>"
+								 type="text" name="nama_kelas" min="0" placeholder="Example: XII RPL 2" />
 								<div class="invalid-feedback">
-									<?php echo form_error('nisn') ?>
+									<?php echo form_error('nama_kelas') ?>
 								</div>
 							</div>
 
 							<div class="form-group mb-4">
-								<label for="nis">NIS</label>
-								<input class="form-control <?php echo form_error('nis') ? 'is-invalid':'' ?>"
-								 type="number" name="nis" min="0" placeholder="Example: 202013455" />
+								<label for="kompetensi_keahlian">Kompetensi Keahlian</label>
+								<input class="form-control <?php echo form_error('kompetensi_keahlian') ? 'is-invalid':'' ?>"
+								 type="text" name="kompetensi_keahlian" min="0" placeholder="Example: Rekayasa Perangkat Lunak" />
 								<div class="invalid-feedback">
-									<?php echo form_error('nis') ?>
+									<?php echo form_error('kompetensi_keahlian') ?>
 								</div>
 							</div>
-
-                            <div class="form-group mb-4">
-								<label for="nama">Nama</label>
-								<input class="form-control <?php echo form_error('nama') ? 'is-invalid':'' ?>"
-								 type="text" name="nama" placeholder="Example: Farhan Kebab" />
-								<div class="invalid-feedback">
-									<?php echo form_error('nama') ?>
-								</div>
-							</div>
-
-                            <div class="form-group mb-4">
-								<label for="id_kelas">Kelas</label>
-								<input class="form-control <?php echo form_error('id_kelas') ? 'is-invalid':'' ?>"
-								 type="text" name="id_kelas" placeholder="Example: X TJKT 3" />
-								<div class="invalid-feedback">
-									<?php echo form_error('id_kelas') ?>
-								</div>
-							</div>
-
-							<div class="form-group mb-4">
-								<label for="alamat">Alamat</label>
-								<input class="form-control <?php echo form_error('alamat') ? 'is-invalid':'' ?>"
-								type="text" name="alamat" placeholder="Example: Jl. Hangar Straight, Silverstone" />
-								<div class="invalid-feedback">
-									<?php echo form_error('alamat') ?>
-								</div>
-							</div>
-
-							<div class="form-group mb-4">
-								<label for="no_telepon">No. Telepon</label>
-								<input class="form-control <?php echo form_error('no_telepon') ? 'is-invalid':'' ?>"
-								type="text" name="no_telepon" placeholder="Example: +62812345678" />
-								<div class="invalid-feedback">
-									<?php echo form_error('no_telepon') ?>
-								</div>
-							</div>
-
-                            <div class="form-group mb-4">
-								<label for="id_spp">No. SPP</label>
-								<input class="form-control <?php echo form_error('id_spp') ? 'is-invalid':'' ?>"
-								 type="text" name="id_spp" placeholder="Example: 2021/001" />
-								<div class="invalid-feedback">
-									<?php echo form_error('id_spp') ?>
-								</div>
-							</div>
-
-                            <div class="form-group mb-4">
-                                <label for="name">Photo</label>
-                                <input class="form-control-file"
-                                 type="file" name="image" />
-                            </div>
 
 							<input class="btn btn-success" type="submit" name="btn" value="Save" />
 						</form>

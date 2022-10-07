@@ -8,6 +8,8 @@ class Siswa extends CI_Controller
     {
         parent::__construct();
         $this->load->model("siswa_model");
+        $this->load->model("kelas_model");
+        $this->load->model("spp_model");
         $this->load->library('form_validation');
     }
 
@@ -20,7 +22,8 @@ class Siswa extends CI_Controller
 
     public function add()
     {
-        $data["siswas"] = $this->siswa_model->getAll()->result();
+        $data["kelass"] = $this->kelas_model->getAll();
+        $data2["spps"] = $this->spp_model->getAll();
         $siswa = $this->siswa_model;
         $validation = $this->form_validation;
         $validation->set_rules($siswa->rules());
@@ -30,13 +33,14 @@ class Siswa extends CI_Controller
             $this->session->set_flashdata('success', 'Berhasil disimpan');
         }
 
-        $this->load->view("admin/siswa/new_form", $data);
+        $this->load->view("admin/siswa/new_form", array_merge($data, $data2));
     }
 
     public function edit($id = null)
     {
         if (!isset($id)) redirect('siswa');
        
+        $data2["kelass"] = $this->kelas_model->getAll();
         $siswa = $this->siswa_model;
         $validation = $this->form_validation;
         $validation->set_rules($siswa->rules());
@@ -49,7 +53,7 @@ class Siswa extends CI_Controller
         $data["siswa"] = $siswa->getById($id);
         if (!$data["siswa"]) show_404();
         
-        $this->load->view("admin/siswa/edit_form", $data);
+        $this->load->view("admin/siswa/edit_form", array_merge($data, $data2));
     }
 
     public function delete($id=null)

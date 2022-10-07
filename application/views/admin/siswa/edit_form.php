@@ -182,10 +182,15 @@
 								</div>
 							</div>
 
-                            <div class="form-group mb-4">
+							<div class="form-group mb-4">
 								<label for="id_kelas">Kelas</label>
-								<input class="form-control <?php echo form_error('id_kelas') ? 'is-invalid':'' ?>"
-								 type="text" name="id_kelas" placeholder="Example: X TJKT 3" value="<?php echo $siswa->id_kelas ?>" />
+								<select class="form-select <?php echo form_error('id_kelas') ? 'is-invalid':'' ?>"
+									aria-label="Default select example" name="id_kelas">
+									<option value="" hidden>--Pilih kelas--</option>
+									<?php foreach ($kelass as $kelas): ?>
+									<option value="<?php echo $kelas->id_kelas ?>"><?php echo $kelas->nama_kelas ?></option>
+									<?php endforeach; ?>
+								</select>
 								<div class="invalid-feedback">
 									<?php echo form_error('id_kelas') ?>
 								</div>

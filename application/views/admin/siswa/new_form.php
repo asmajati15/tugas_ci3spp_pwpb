@@ -182,8 +182,13 @@
 
                             <div class="form-group mb-4">
 								<label for="id_kelas">Kelas</label>
-								<input class="form-control <?php echo form_error('id_kelas') ? 'is-invalid':'' ?>"
-								 type="text" name="id_kelas" placeholder="Example: X TJKT 3" />
+								<select class="form-select <?php echo form_error('id_kelas') ? 'is-invalid':'' ?>"
+									aria-label="Default select example" name="id_kelas">
+									<option value="" hidden>--Pilih kelas--</option>
+									<?php foreach ($kelass as $kelas): ?>
+									<option value="<?php echo $kelas->id_kelas ?>"><?php echo $kelas->nama_kelas ?></option>
+									<?php endforeach; ?>
+								</select>
 								<div class="invalid-feedback">
 									<?php echo form_error('id_kelas') ?>
 								</div>
@@ -207,12 +212,17 @@
 								</div>
 							</div>
 
-                            <div class="form-group mb-4">
+							<div class="form-group mb-4">
 								<label for="id_spp">No. SPP</label>
-								<input class="form-control <?php echo form_error('id_spp') ? 'is-invalid':'' ?>"
-								 type="text" name="id_spp" placeholder="Example: 2021/001" />
+								<select class="form-select <?php echo form_error('id_spp') ? 'is-invalid':'' ?>"
+									aria-label="Default select example" name="id_spp">
+									<option value="" hidden>--Pilih spp--</option>
+									<?php foreach ($spps as $spp): ?>
+									<option value="<?php echo $spp->id_spp ?>"><?php echo $spp->tahun_ajaran ?></option>
+									<?php endforeach; ?>
+								</select>
 								<div class="invalid-feedback">
-									<?php echo form_error('id_spp') ?>
+									<?php echo form_error('id_kelas') ?>
 								</div>
 							</div>
 

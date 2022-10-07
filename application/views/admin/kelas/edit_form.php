@@ -129,7 +129,7 @@
 							<!-- Actions -->
 							<div class="col-sm-6 col-12 text-sm-end">
 								<div class="mx-n1">
-									<a href="<?php echo site_url('siswa') ?>" class="btn d-inline-flex btn-sm btn-primary mx-1">
+									<a href="<?php echo site_url('kelas') ?>" class="btn d-inline-flex btn-sm btn-primary mx-1">
 										<span class=" pe-2">
 											<i class="bi bi-arrow-left"></i>
 										</span>
@@ -149,80 +149,29 @@
 							<h5 class="mb-0">Form Add</h5></h5>
 						</div>
 						<div class="card-body">
-                        <form action="<?php echo site_url('siswa/edit/'. $siswa->id_siswa) ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo site_url('kelas/edit/'. $kelas->id_kelas) ?>" method="post" enctype="multipart/form-data">
 						<!-- Note: atribut action dikosongkan, artinya action-nya akan diproses 
 							oleh controller tempat vuew ini digunakan. Yakni index.php/admin/products/edit/ID --->
 
-							<input type="hidden" name="id_siswa" value="<?php echo $siswa->id_siswa ?>" />
+							<input type="hidden" name="id_kelas" value="<?php echo $kelas->id_kelas ?>" />
 
 							<div class="form-group mb-4">
-								<label for="nisn">NISN</label>
-								<input class="form-control <?php echo form_error('nisn') ? 'is-invalid':'' ?>"
-								 type="number" name="nisn" min="0" placeholder="Example: 0061334453" value="<?php echo $siswa->nisn ?>" />
+								<label for="nama_kelas">Nama Kelas</label>
+								<input class="form-control <?php echo form_error('nama_kelas') ? 'is-invalid':'' ?>"
+								 type="text" name="nama_kelas" min="0" placeholder="Example: 0061334453" value="<?php echo $kelas->nama_kelas ?>" />
 								<div class="invalid-feedback">
-									<?php echo form_error('nisn') ?>
-								</div>
-							</div>
-
-							<div class="form-group mb-4">
-								<label for="nis">NIS</label>
-								<input class="form-control <?php echo form_error('nis') ? 'is-invalid':'' ?>"
-								type="number" name="nis" min="0" placeholder="Example: 202013455" value="<?php echo $siswa->nis ?>" />
-								<div class="invalid-feedback">
-									<?php echo form_error('nis') ?>
-								</div>
-							</div>
-
-                            <div class="form-group mb-4">
-								<label for="nama">Nama</label>
-								<input class="form-control <?php echo form_error('nama') ? 'is-invalid':'' ?>"
-								 type="text" name="nama" placeholder="Example: Farhan Kebab" value="<?php echo $siswa->nama ?>" />
-								<div class="invalid-feedback">
-									<?php echo form_error('nama') ?>
-								</div>
-							</div>
-
-                            <div class="form-group mb-4">
-								<label for="id_kelas">Kelas</label>
-								<input class="form-control <?php echo form_error('id_kelas') ? 'is-invalid':'' ?>"
-								 type="text" name="id_kelas" placeholder="Example: X TJKT 3" value="<?php echo $siswa->id_kelas ?>" />
-								<div class="invalid-feedback">
-									<?php echo form_error('id_kelas') ?>
-								</div>
-							</div>
-							
-							<div class="form-group mb-4">
-								<label for="alamat">Alamat</label>
-								<input class="form-control <?php echo form_error('alamat') ? 'is-invalid':'' ?>"
-								type="text" name="alamat" placeholder="Example: Jl. Hangar Straight, Silverstone" value="<?php echo $siswa->alamat ?>" />
-								<div class="invalid-feedback">
-									<?php echo form_error('alamat') ?>
+									<?php echo form_error('nama_kelas') ?>
 								</div>
 							</div>
 
 							<div class="form-group mb-4">
-								<label for="no_telepon">No. Telepon</label>
-								<input class="form-control <?php echo form_error('no_telepon') ? 'is-invalid':'' ?>"
-								type="text" name="no_telepon" placeholder="Example: +62812345678" value="<?php echo $siswa->no_telepon ?>" />
+								<label for="kompetensi_keahlian">Kompetensi Keahlian</label>
+								<input class="form-control <?php echo form_error('kompetensi_keahlian') ? 'is-invalid':'' ?>"
+								type="text" name="kompetensi_keahlian" min="0" placeholder="Example: 202013455" value="<?php echo $kelas->kompetensi_keahlian ?>" />
 								<div class="invalid-feedback">
-									<?php echo form_error('no_telepon') ?>
+									<?php echo form_error('kompetensi_keahlian') ?>
 								</div>
 							</div>
-
-                            <div class="form-group mb-4">
-								<label for="id_spp">No. SPP</label>
-								<input class="form-control <?php echo form_error('id_spp') ? 'is-invalid':'' ?>"
-								 type="text" name="id_spp" placeholder="Example: 2021/001" value="<?php echo $siswa->id_spp ?>" />
-								<div class="invalid-feedback">
-									<?php echo form_error('id_spp') ?>
-								</div>
-							</div>
-
-                            <div class="form-group mb-4">
-                                <label for="name">Photo</label>
-                                <input class="form-control-file"
-                                 type="file" name="image" />
-                            </div>
 
 							<input class="btn btn-success" type="submit" name="btn" value="Save" />
 						</form>
