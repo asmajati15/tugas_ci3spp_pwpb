@@ -22,6 +22,14 @@ class Siswa extends CI_Controller
 
     public function add()
     {
+        $config['upload_path']          = './uploads/';
+        $config['allowed_types']        = 'jpg|png';
+        // $config['max_size']             = 100;
+        // $config['max_width']            = 1024;
+        // $config['max_height']           = 1024;
+
+        $this->load->library('upload', $config);
+
         $data["kelass"] = $this->kelas_model->getAll();
         $data2["spps"] = $this->spp_model->getAll();
         $siswa = $this->siswa_model;
@@ -29,10 +37,23 @@ class Siswa extends CI_Controller
         $validation->set_rules($siswa->rules());
 
         if ($validation->run()) {
-            $siswa->save();
-            $this->session->set_flashdata('success', 'Berhasil disimpan');
+            // if (!$this->upload->do_upload('gambar')) {
+            //     $siswa->saveWithoutImage();
+            //     $this->session->set_flashdata('success', 'Data berhasil disimpan !');
+            // } else {
+            //     $siswa->save();
+            //     $this->session->set_flashdata('success', 'Data berhasil disimpan !');
+            // }
+            if (!$this->upload->do_upload('gambar')) {
+                $siswa->saveWithoutImage();
+                $this->session->set_flashdata('success', 'Data berhasil disimpan !');
+            } else {
+                $siswa->save();
+                $this->session->set_flashdata('success', 'Data berhasil disimpan !');
+            }
         }
-
+        
+        // $this->session->set_flashdata('error', 'Data gagal disimpan !');
         $this->load->view("admin/siswa/new_form", array_merge($data, $data2));
     }
 
@@ -41,6 +62,7 @@ class Siswa extends CI_Controller
         if (!isset($id)) redirect('siswa');
        
         $data2["kelass"] = $this->kelas_model->getAll();
+        $data3["spps"] = $this->spp_model->getAll();
         $siswa = $this->siswa_model;
         $validation = $this->form_validation;
         $validation->set_rules($siswa->rules());
@@ -53,7 +75,7 @@ class Siswa extends CI_Controller
         $data["siswa"] = $siswa->getById($id);
         if (!$data["siswa"]) show_404();
         
-        $this->load->view("admin/siswa/edit_form", array_merge($data, $data2));
+        $this->load->view("admin/siswa/edit_form", array_merge($data, $data2, $data3));
     }
 
     public function delete($id=null)

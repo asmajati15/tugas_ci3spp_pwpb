@@ -65,28 +65,28 @@
 					<!-- Navigation -->
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="<?php echo site_url('/') ?>">
 								<i class="bi bi-house"></i> Dashboard
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="bi bi-bar-chart"></i> Analitycs
+							<a class="nav-link" href="<?php echo site_url('siswa') ?>">
+								<i class="bi bi-people"></i> Siswa
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="bi bi-chat"></i> Messages
+							<a class="nav-link" href="<?php echo site_url('kelas') ?>">
+								<i class="bi bi-book"></i> Kelas
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="bi bi-bookmarks"></i> Collections
+							<a class="nav-link" href="<?php echo site_url('petugas') ?>">
+								<i class="bi bi-person"></i> Petugas
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="bi bi-people"></i> Users
+							<a class="nav-link" href="<?php echo site_url('pembarayan') ?>">
+								<i class="bi bi-cash"></i> Pembayaran
 							</a>
 						</li>
 					</ul>
@@ -118,6 +118,11 @@
                     <?php if ($this->session->flashdata('success')): ?>
                     <div class="alert alert-success" role="alert">
                         <?php echo $this->session->flashdata('success'); ?>
+                    </div>
+                    <?php endif; ?>
+                    <?php if ($this->session->flashdata('error')): ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?php echo $this->session->flashdata('error'); ?>
                     </div>
                     <?php endif; ?>
 					<div class="mb-npx">
@@ -227,9 +232,8 @@
 							</div>
 
                             <div class="form-group mb-4">
-                                <label for="name">Photo</label>
-                                <input class="form-control-file"
-                                 type="file" name="image" />
+                                <label for="gambar">Photo</label>
+                                <input class="form-control-file" type="file" name="gambar" />
                             </div>
 
 							<input class="btn btn-success" type="submit" name="btn" value="Save" />

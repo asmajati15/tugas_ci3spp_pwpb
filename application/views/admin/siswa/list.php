@@ -65,28 +65,28 @@
 					<!-- Navigation -->
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="<?php echo site_url('/') ?>">
 								<i class="bi bi-house"></i> Dashboard
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="bi bi-bar-chart"></i> Analitycs
+							<a class="nav-link" href="<?php echo site_url('siswa') ?>">
+								<i class="bi bi-people"></i> Siswa
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="bi bi-chat"></i> Messages
+							<a class="nav-link" href="<?php echo site_url('kelas') ?>">
+								<i class="bi bi-book"></i> Kelas
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="bi bi-bookmarks"></i> Collections
+							<a class="nav-link" href="<?php echo site_url('petugas') ?>">
+								<i class="bi bi-person"></i> Petugas
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="bi bi-people"></i> Users
+							<a class="nav-link" href="<?php echo site_url('pembarayan') ?>">
+								<i class="bi bi-cash"></i> Pembayaran
 							</a>
 						</li>
 					</ul>
@@ -161,9 +161,8 @@
                                     <?php foreach ($siswas as $siswa): ?>
 									<tr>
 										<td>
-											<img alt=""
-												src="<?php echo base_url('upload/siswa/'.$siswa->gambar) ?>"
-												class="avatar avatar-sm rounded-circle me-2">
+											<img alt="" src="<?php echo base_url('upload/siswa/'.$siswa->gambar) ?>" class="avatar avatar-sm rounded-circle me-2">
+											<img alt="" src="<?php echo base_url().'uploads/'.$siswa->gambar; ?>" class="avatar avatar-sm rounded-circle me-2">
 											<a class="text-heading font-semibold" href="#">
 												<?php echo $siswa->nama ?>
 											</a>
@@ -175,7 +174,9 @@
                                             <?php echo $siswa->nis ?>
 										</td>
 										<td>
-                                            <?php echo $siswa->nama_kelas ?>
+											<a class="text-heading font-semibold" href="<?php echo site_url('kelas') ?>">
+                                            	<?php echo $siswa->nama_kelas ?>
+											</a>
 										</td>
 										<td>
                                             <?php echo $siswa->alamat ?>

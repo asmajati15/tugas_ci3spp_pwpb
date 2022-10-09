@@ -65,28 +65,28 @@
 					<!-- Navigation -->
 					<ul class="navbar-nav">
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="<?php echo site_url('/') ?>">
 								<i class="bi bi-house"></i> Dashboard
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="bi bi-bar-chart"></i> Analitycs
+							<a class="nav-link" href="<?php echo site_url('siswa') ?>">
+								<i class="bi bi-people"></i> Siswa
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="bi bi-chat"></i> Messages
+							<a class="nav-link" href="<?php echo site_url('kelas') ?>">
+								<i class="bi bi-book"></i> Kelas
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="bi bi-bookmarks"></i> Collections
+							<a class="nav-link" href="<?php echo site_url('petugas') ?>">
+								<i class="bi bi-person"></i> Petugas
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
-								<i class="bi bi-people"></i> Users
+							<a class="nav-link" href="<?php echo site_url('pembarayan') ?>">
+								<i class="bi bi-cash"></i> Pembayaran
 							</a>
 						</li>
 					</ul>
@@ -216,10 +216,15 @@
 
                             <div class="form-group mb-4">
 								<label for="id_spp">No. SPP</label>
-								<input class="form-control <?php echo form_error('id_spp') ? 'is-invalid':'' ?>"
-								 type="text" name="id_spp" placeholder="Example: 2021/001" value="<?php echo $siswa->id_spp ?>" />
+								<select class="form-select <?php echo form_error('id_spp') ? 'is-invalid':'' ?>"
+									aria-label="Default select example" name="id_spp">
+									<option value="" hidden>--Pilih spp--</option>
+									<?php foreach ($spps as $spp): ?>
+									<option value="<?php echo $spp->id_spp ?>"><?php echo $spp->tahun_ajaran ?></option>
+									<?php endforeach; ?>
+								</select>
 								<div class="invalid-feedback">
-									<?php echo form_error('id_spp') ?>
+									<?php echo form_error('id_kelas') ?>
 								</div>
 							</div>
 

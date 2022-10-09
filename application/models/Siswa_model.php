@@ -7,7 +7,7 @@ class Siswa_model extends CI_Model
     public $nisn;
     public $nis;
     public $nama;
-    public $gambar = "default.jpg";
+    public $gambar;
     public $id_kelas;
     public $alamat;
     public $no_telepon;
@@ -62,6 +62,21 @@ class Siswa_model extends CI_Model
         return $this->db->get_where($this->_table, ["id_siswa" => $id])->row();
     }
 
+    public function saveWithoutImage()
+    {
+        $post = $this->input->post();
+        // $this->id_siswa = md5(uniqid());
+        $this->id_siswa = mt_rand();
+        $this->nisn = $post["nisn"];
+        $this->nis = $post["nis"];
+        $this->nama = $post["nama"];
+        $this->id_kelas = $post["id_kelas"];
+        $this->alamat = $post["alamat"];
+        $this->no_telepon = $post["no_telepon"];
+        $this->id_spp = $post["id_spp"];
+        return $this->db->insert($this->_table, $this);
+    }
+
     public function save()
     {
         $post = $this->input->post();
@@ -74,6 +89,7 @@ class Siswa_model extends CI_Model
         $this->alamat = $post["alamat"];
         $this->no_telepon = $post["no_telepon"];
         $this->id_spp = $post["id_spp"];
+        $this->upload->data()["file_name"] = $post["gambar"];
         return $this->db->insert($this->_table, $this);
     }
 
