@@ -5,7 +5,7 @@ class Kelas_model extends CI_Model
     private $_table = "kelas";
 
     public $nama_kelas;
-    public $kompetensi_keahlian;
+    public $id_jurusan;
 
     public function rules()
     {
@@ -14,15 +14,20 @@ class Kelas_model extends CI_Model
             'label' => 'nama_Kelas',
             'rules' => 'required'],
             
-            ['field' => 'kompetensi_keahlian',
-            'label' => 'kompetensi_Keahlian',
+            ['field' => 'id_jurusan',
+            'label' => 'id_jurusan',
             'rules' => 'required']
         ];
     }
 
     public function getAll()
     {
-        return $this->db->order_by("nama_kelas", "asc")->get($this->_table)->result();
+        // return $this->db->order_by("nama_kelas", "asc")->get($this->_table)->result();
+        $this->db->select('*');
+        $this->db->from('kelas');
+        $this->db->join('jurusan','jurusan.id_jurusan = kelas.id_jurusan');        
+        $query = $this->db->order_by("nama_kelas", "asc")->get()->result();
+        return $query;
     }
     
     public function getById($id)
@@ -36,7 +41,7 @@ class Kelas_model extends CI_Model
         // $this->id_kelas = md5(uniqid(rand(9999,99999999), true));
         $this->id_kelas = mt_rand();
         $this->nama_kelas = $post["nama_kelas"];
-        $this->kompetensi_keahlian = $post["kompetensi_keahlian"];
+        $this->id_jurusan = $post["id_jurusan"];
         return $this->db->insert($this->_table, $this);
     }
 
@@ -45,7 +50,7 @@ class Kelas_model extends CI_Model
         $post = $this->input->post();
         $this->id_kelas = $post["id_kelas"];
         $this->nama_kelas = $post["nama_kelas"];
-        $this->kompetensi_keahlian = $post["kompetensi_keahlian"];
+        $this->id_jurusan = $post["id_jurusan"];
         return $this->db->update($this->_table, $this, array('id_kelas' => $post['id_kelas']));
     }
 

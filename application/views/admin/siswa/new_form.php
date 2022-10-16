@@ -85,8 +85,13 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo site_url('pembarayan') ?>">
+							<a class="nav-link" href="<?php echo site_url('pembayaran') ?>">
 								<i class="bi bi-cash"></i> Pembayaran
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="<?php echo site_url('spp') ?>">
+								<i class="bi bi-receipt"></i> SPP
 							</a>
 						</li>
 					</ul>
@@ -157,6 +162,15 @@
                         <form action="<?php echo site_url('siswa/add') ?>" method="post" enctype="multipart/form-data" >
 							
 							<input type="hidden" name="id_siswa">
+
+                            <!-- <div class="form-group mb-4">
+								<label for="id_siswa">id_siswa</label>
+								<input class="form-control <?php echo form_error('id_siswa') ? 'is-invalid':'' ?>"
+								 type="number" name="id_siswa" min="0" placeholder="Example: 006321445" />
+								<div class="invalid-feedback">
+									<?php echo form_error('id_siswa') ?>
+								</div>
+							</div> -->
 
                             <div class="form-group mb-4">
 								<label for="nisn">NISN</label>

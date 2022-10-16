@@ -2,7 +2,7 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Siswa extends CI_Controller
+class Petugas extends CI_Controller
 {
     public function __construct()
     {
@@ -11,18 +11,16 @@ class Siswa extends CI_Controller
         if ($this->session->userdata('status') != "login") {
             redirect(base_url("login"));
         } else {
-            $this->load->model("siswa_model");
-            $this->load->model("kelas_model");
-            $this->load->model("spp_model");
+            $this->load->model("petugas_model");
             $this->load->library('form_validation');
         }
     }
 
     public function index()
     {
-        // $data["siswas"] = $this->siswa_model->getAll();
-        $data["siswas"] = $this->siswa_model->getAll();
-        $this->load->view("admin/siswa/list", $data);
+        // $data["petugass"] = $this->petugas_model->getAll();
+        $data["petugass"] = $this->petugas_model->getAll();
+        $this->load->view("admin/petugas/list", $data);
     }
 
     public function add()
@@ -35,29 +33,27 @@ class Siswa extends CI_Controller
 
         $this->load->library('upload', $config);
 
-        $data["kelass"] = $this->kelas_model->getAll();
-        $data2["spps"] = $this->spp_model->getAll();
-        $siswa = $this->siswa_model;
+        $petugas = $this->petugas_model;
         $validation = $this->form_validation;
-        $validation->set_rules($siswa->rules());
+        $validation->set_rules($petugas->rules());
 
         if ($validation->run()) {
             if (!$this->upload->do_upload('gambar')) {
-                $siswa->saveWithoutImage();
+                $petugas->saveWithoutImage();
                 $this->session->set_flashdata('success', 'Data berhasil disimpan !');
             } else {
-                $siswa->save();
+                $petugas->save();
                 $this->session->set_flashdata('success', 'Data berhasil disimpan !');
             }
         }
         
         // $this->session->set_flashdata('error', 'Data gagal disimpan !');
-        $this->load->view("admin/siswa/new_form", array_merge($data, $data2));
+        $this->load->view("admin/petugas/new_form");
     }
 
     public function edit($id = null)
     {
-        if (!isset($id)) redirect('siswa');
+        if (!isset($id)) redirect('petugas');
 
         $config['upload_path']          = './uploads/';
         $config['allowed_types']        = 'jpg|png';
@@ -67,34 +63,32 @@ class Siswa extends CI_Controller
 
         $this->load->library('upload', $config);
        
-        $data2["kelass"] = $this->kelas_model->getAll();
-        $data3["spps"] = $this->spp_model->getAll();
-        $siswa = $this->siswa_model;
+        $petugas = $this->petugas_model;
         $validation = $this->form_validation;
-        $validation->set_rules($siswa->rules());
+        $validation->set_rules($petugas->rules());
 
         if ($validation->run()) {
             if (!$this->upload->do_upload('gambar')) {
-                $siswa->updateWithoutImage();
+                $petugas->updateWithoutImage();
                 $this->session->set_flashdata('success', 'Data berhasil disimpan !');
             // } else {
-            //     $siswa->update();
+            //     $petugas->update();
             //     $this->session->set_flashdata('success', 'Data berhasil disimpan !');
             }
         }
 
-        $data["siswa"] = $siswa->getById($id);
-        if (!$data["siswa"]) show_404();
+        $data["petugas"] = $petugas->getById($id);
+        if (!$data["petugas"]) show_404();
         
-        $this->load->view("admin/siswa/edit_form", array_merge($data, $data2, $data3));
+        $this->load->view("admin/petugas/edit_form", $data);
     }
 
     public function delete($id=null)
     {
         if (!isset($id)) show_404();
         
-        if ($this->siswa_model->delete($id)) {
-            redirect(site_url('siswa'));
+        if ($this->petugas_model->delete($id)) {
+            redirect(site_url('petugas'));
         }
     }
 }

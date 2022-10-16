@@ -132,7 +132,7 @@
 							<!-- Actions -->
 							<div class="col-sm-6 col-12 text-sm-end">
 								<div class="mx-n1">
-									<a href="<?php echo site_url('kelas/add') ?>" class="btn d-inline-flex btn-sm btn-primary mx-1">
+									<a href="<?php echo site_url('spp/add') ?>" class="btn d-inline-flex btn-sm btn-primary mx-1">
 										<span class=" pe-2">
 											<i class="bi bi-plus"></i>
 										</span>
@@ -149,32 +149,32 @@
 				<div class="container-fluid">
 					<div class="card mb-7">
 						<div class="card-header">
-							<h5 class="mb-0">Kelas</h5>
+							<h5 class="mb-0">SPP</h5>
 						</div>
 						<div class="table">
 							<table id="list" class="table table-hover table-nowrap">
 								<thead class="table-light">
 									<tr>
-										<th scope="col">Nama Kelas</th>
-										<th scope="col">Kompetensi Keahlian</th>
+										<th scope="col">Tahun Ajaran</th>
+										<th scope="col">Nominal</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
-                                    <?php foreach ($kelass as $kelas): ?>
+                                    <?php foreach ($spps as $spp): ?>
 									<tr>
 										<td>
-											<?php echo $kelas->nama_kelas ?>
-										</td>
-										<td>
-											<a class="text-heading font-semibold" href="<?php echo site_url('jurusan') ?>">
-												<?php echo $kelas->nama_jurusan ?>
+											<a class="text-heading font-semibold" href="#">
+												<?php echo $spp->tahun_ajaran ?>
 											</a>
 										</td>
+										<td>
+                                            <?php echo $spp->nominal ?>
+										</td>
 										<td class="text-end">
-											<a href="<?php echo site_url('kelas/edit/'.$kelas->id_kelas) ?>" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i></a>
+											<a href="<?php echo site_url('spp/edit/'.$spp->id_spp) ?>" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i></a>
 											<a onclick="return confirm('Are you sure you want to delete this item?');"
-											 href="<?php echo site_url('kelas/delete/'.$kelas->id_kelas) ?>" class="btn btn-sm btn-square btn-neutral text-danger-hover"><i class="bi bi-trash"></i></a>
+											 href="<?php echo site_url('spp/delete/'.$spp->id_spp) ?>" class="btn btn-sm btn-square btn-neutral text-danger-hover"><i class="bi bi-trash"></i></a>
 										</td>
 									</tr>
                                     <?php endforeach; ?>
@@ -187,7 +187,7 @@
 		</div>
 	</div>
 
-    <script>
+	<script>
 		$(document).ready(function () {
 		$('#list').DataTable();
 	});

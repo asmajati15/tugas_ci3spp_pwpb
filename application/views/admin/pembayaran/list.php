@@ -132,7 +132,7 @@
 							<!-- Actions -->
 							<div class="col-sm-6 col-12 text-sm-end">
 								<div class="mx-n1">
-									<a href="<?php echo site_url('kelas/add') ?>" class="btn d-inline-flex btn-sm btn-primary mx-1">
+									<a href="<?php echo site_url('pembayaran/add') ?>" class="btn d-inline-flex btn-sm btn-primary mx-1">
 										<span class=" pe-2">
 											<i class="bi bi-plus"></i>
 										</span>
@@ -149,32 +149,48 @@
 				<div class="container-fluid">
 					<div class="card mb-7">
 						<div class="card-header">
-							<h5 class="mb-0">Kelas</h5>
+							<h5 class="mb-0">Pembayaran</h5>
 						</div>
 						<div class="table">
 							<table id="list" class="table table-hover table-nowrap">
 								<thead class="table-light">
 									<tr>
-										<th scope="col">Nama Kelas</th>
-										<th scope="col">Kompetensi Keahlian</th>
+										<th scope="col">Nama Petugas</th>
+										<th scope="col">Nama Siswa</th>
+										<th scope="col">Tanggal Bayar</th>
+										<th scope="col">Jumlah Bayar</th>
+										<th scope="col">Nominal</th>
 										<th></th>
 									</tr>
 								</thead>
 								<tbody>
-                                    <?php foreach ($kelass as $kelas): ?>
+                                    <?php foreach ($pembayarans as $pembayaran): ?>
 									<tr>
 										<td>
-											<?php echo $kelas->nama_kelas ?>
+											<a class="text-heading font-semibold" href="<?php echo site_url('petugas') ?>">
+												<?php echo $pembayaran->nama_petugas ?>
+											</a>
 										</td>
 										<td>
-											<a class="text-heading font-semibold" href="<?php echo site_url('jurusan') ?>">
-												<?php echo $kelas->nama_jurusan ?>
+											<a class="text-heading font-semibold" href="<?php echo site_url('siswa') ?>">
+												<?php echo $pembayaran->nama ?>
+											</a>
+										</td>
+										<td>
+											<?php echo $pembayaran->tanggal_bayar ?>
+										</td>
+										<td>
+											<?php echo $pembayaran->jumlah_bayar ?>
+										</td>
+										<td>
+											<a class="text-heading font-semibold" href="<?php echo site_url('spp') ?>">
+												<?php echo $pembayaran->nominal ?>
 											</a>
 										</td>
 										<td class="text-end">
-											<a href="<?php echo site_url('kelas/edit/'.$kelas->id_kelas) ?>" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i></a>
+											<a href="<?php echo site_url('pembayaran/edit/'.$pembayaran->id_pembayaran) ?>" class="btn btn-sm btn-square btn-neutral"><i class="bi bi-pencil"></i></a>
 											<a onclick="return confirm('Are you sure you want to delete this item?');"
-											 href="<?php echo site_url('kelas/delete/'.$kelas->id_kelas) ?>" class="btn btn-sm btn-square btn-neutral text-danger-hover"><i class="bi bi-trash"></i></a>
+											 href="<?php echo site_url('pembayaran/delete/'.$pembayaran->id_pembayaran) ?>" class="btn btn-sm btn-square btn-neutral text-danger-hover"><i class="bi bi-trash"></i></a>
 										</td>
 									</tr>
                                     <?php endforeach; ?>
@@ -187,7 +203,7 @@
 		</div>
 	</div>
 
-    <script>
+	<script>
 		$(document).ready(function () {
 		$('#list').DataTable();
 	});

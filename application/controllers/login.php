@@ -4,12 +4,12 @@ class Login extends CI_Controller{
  
 	function __construct(){
 		parent::__construct();		
-		$this->load->model('m_login');
+		$this->load->model('Login_model');
  
 	}
  
 	function index(){
-		$this->load->view('v_login');
+		$this->load->view('login');
 	}
  
 	function aksi_login(){
@@ -19,7 +19,7 @@ class Login extends CI_Controller{
 			'username' => $username,
 			'password' => md5($password)
 			);
-		$cek = $this->m_login->cek_login("admin",$where)->num_rows();
+		$cek = $this->Login_model->cek_login("petugas",$where)->num_rows();
 		if($cek > 0){
  
 			$data_session = array(
@@ -29,7 +29,7 @@ class Login extends CI_Controller{
  
 			$this->session->set_userdata($data_session);
  
-			redirect(base_url("admin"));
+			redirect(base_url("siswa"));
  
 		}else{
 			redirect(base_url('login'));

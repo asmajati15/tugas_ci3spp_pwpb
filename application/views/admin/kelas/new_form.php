@@ -85,8 +85,13 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo site_url('pembarayan') ?>">
+							<a class="nav-link" href="<?php echo site_url('pembayaran') ?>">
 								<i class="bi bi-cash"></i> Pembayaran
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="<?php echo site_url('spp') ?>">
+								<i class="bi bi-receipt"></i> SPP
 							</a>
 						</li>
 					</ul>
@@ -152,7 +157,7 @@
                         <form action="<?php echo site_url('kelas/add') ?>" method="post" enctype="multipart/form-data" >
 							
                             <div class="form-group mb-4">
-								<label for="nama_kelas">Kama Kelas</label>
+								<label for="nama_kelas">Nama Kelas</label>
 								<input class="form-control <?php echo form_error('nama_kelas') ? 'is-invalid':'' ?>"
 								 type="text" name="nama_kelas" min="0" placeholder="Example: XII RPL 2" />
 								<div class="invalid-feedback">
@@ -161,11 +166,16 @@
 							</div>
 
 							<div class="form-group mb-4">
-								<label for="kompetensi_keahlian">Kompetensi Keahlian</label>
-								<input class="form-control <?php echo form_error('kompetensi_keahlian') ? 'is-invalid':'' ?>"
-								 type="text" name="kompetensi_keahlian" min="0" placeholder="Example: Rekayasa Perangkat Lunak" />
+								<label for="id_jurusan">Jurusan</label>
+								<select class="form-select <?php echo form_error('id_jurusan') ? 'is-invalid':'' ?>"
+									aria-label="Default select example" name="id_jurusan">
+									<option value="" hidden>--Pilih jurusan--</option>
+									<?php foreach ($jurusans as $jurusan): ?>
+									<option value="<?php echo $jurusan->id_jurusan ?>"><?php echo $jurusan->nama_jurusan ?></option>
+									<?php endforeach; ?>
+								</select>
 								<div class="invalid-feedback">
-									<?php echo form_error('kompetensi_keahlian') ?>
+									<?php echo form_error('id_jurusan') ?>
 								</div>
 							</div>
 

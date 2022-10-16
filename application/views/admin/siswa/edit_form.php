@@ -85,8 +85,13 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo site_url('pembarayan') ?>">
+							<a class="nav-link" href="<?php echo site_url('pembayaran') ?>">
 								<i class="bi bi-cash"></i> Pembayaran
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="<?php echo site_url('spp') ?>">
+								<i class="bi bi-receipt"></i> SPP
 							</a>
 						</li>
 					</ul>
@@ -146,7 +151,7 @@
 				<div class="container-fluid">
 					<div class="card mb-7">
 						<div class="card-header">
-							<h5 class="mb-0">Form Add</h5></h5>
+							<h5 class="mb-0">Form Edit</h5></h5>
 						</div>
 						<div class="card-body">
                         <form action="<?php echo site_url('siswa/edit/'. $siswa->id_siswa) ?>" method="post" enctype="multipart/form-data">
@@ -188,7 +193,7 @@
 									aria-label="Default select example" name="id_kelas">
 									<option value="" hidden>--Pilih kelas--</option>
 									<?php foreach ($kelass as $kelas): ?>
-									<option value="<?php echo $kelas->id_kelas ?>"><?php echo $kelas->nama_kelas ?></option>
+										<option <?php if($siswa->id_kelas ==$kelas->id_kelas){ echo 'selected="selected"'; } ?> value="<?php echo $siswa->id_kelas ?>"><?php echo $kelas->nama_kelas ?></option>
 									<?php endforeach; ?>
 								</select>
 								<div class="invalid-feedback">
@@ -220,7 +225,7 @@
 									aria-label="Default select example" name="id_spp">
 									<option value="" hidden>--Pilih spp--</option>
 									<?php foreach ($spps as $spp): ?>
-									<option value="<?php echo $spp->id_spp ?>"><?php echo $spp->tahun_ajaran ?></option>
+									<option <?php if($siswa->id_spp ==$spp->id_spp){ echo 'selected="selected"'; } ?> value="<?php echo $siswa->id_spp ?>"><?php echo $spp->tahun_ajaran ?></option>
 									<?php endforeach; ?>
 								</select>
 								<div class="invalid-feedback">
@@ -229,10 +234,17 @@
 							</div>
 
                             <div class="form-group mb-4">
-                                <label for="name">Photo</label>
-                                <input class="form-control-file"
-                                 type="file" name="image" />
-                            </div>
+                                <!-- <label for="name">Photo</label> -->
+								<!-- <input class="form-control-file"
+								type="file" name="gambar" /> -->
+								<?php if ($siswa->gambar != NULL) {?>
+									<input type="hidden" name="old" value="<?php echo $siswa->gambar ?>">
+									<img alt="" src="<?php echo base_url().'uploads/'.$siswa->gambar; ?>" class="avatar avatar-sm rounded-circle me-2">
+									<small>Siswa ini sudah memiliki foto</small>
+								<?php } else {?>
+									<small>Siswa ini tidak memiliki foto</small>
+								<?php } ?>
+							</div>
 
 							<input class="btn btn-success" type="submit" name="btn" value="Save" />
 						</form>

@@ -9,6 +9,9 @@
 	<link rel="stylesheet" href="asset/bootstrap/bootstrap.min.css">
 	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
 	<script src="asset/bootstrap/bootstrap.min.js" defer></script>
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.css"/>
+ 
+	<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.12.1/datatables.min.js"></script>
 
 	<style>
 		@import url("https://unpkg.com/@webpixels/css@1.1.5/dist/index.css");
@@ -85,8 +88,13 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="<?php echo site_url('pembarayan') ?>">
+							<a class="nav-link" href="<?php echo site_url('pembayaran') ?>">
 								<i class="bi bi-cash"></i> Pembayaran
+							</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="<?php echo site_url('spp') ?>">
+								<i class="bi bi-receipt"></i> SPP
 							</a>
 						</li>
 					</ul>
@@ -102,7 +110,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="<?php echo base_url('login/logout'); ?>">
 								<i class="bi bi-box-arrow-left"></i> Logout
 							</a>
 						</li>
@@ -143,8 +151,8 @@
 						<div class="card-header">
 							<h5 class="mb-0">Siswa</h5>
 						</div>
-						<div class="table-responsive">
-							<table class="table table-hover table-nowrap">
+						<div class="table">
+							<table id="list" class="table table-hover table-nowrap">
 								<thead class="table-light">
 									<tr>
 										<th scope="col">Nama Lengkap</th>
@@ -153,7 +161,7 @@
 										<th scope="col">Kelas</th>
 										<th scope="col">Alamat</th>
 										<th scope="col">No. Telpon</th>
-										<th scope="col">Tahun Ajaran</th>
+										<th scope="col">Tahun SPP</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -161,8 +169,9 @@
                                     <?php foreach ($siswas as $siswa): ?>
 									<tr>
 										<td>
-											<img alt="" src="<?php echo base_url('upload/siswa/'.$siswa->gambar) ?>" class="avatar avatar-sm rounded-circle me-2">
+											<?php if ($siswa->gambar != NULL) {?>
 											<img alt="" src="<?php echo base_url().'uploads/'.$siswa->gambar; ?>" class="avatar avatar-sm rounded-circle me-2">
+											<?php } ?>
 											<a class="text-heading font-semibold" href="#">
 												<?php echo $siswa->nama ?>
 											</a>
@@ -197,39 +206,17 @@
 								</tbody>
 							</table>
 						</div>
-						<div class="card-footer border-0 py-5">
-							<span class="text-muted text-sm">Showing 10 items out of 250 results found</span>
-						</div>
 					</div>
 				</div>
 			</main>
 		</div>
 	</div>
 
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true"></span>
-                </button>
-            </div>
-            <div class="modal-body">Data yang dihapus tidak akan bisa dikembalikan.</div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a id="btn-delete" class="btn btn-danger" href="#">Delete</a>
-            </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        function deleteConfirm(url){
-            $('#btn-delete').attr('href', url);
-            $('#deleteModal').modal();
-        }
-    </script>
+	<script>
+		$(document).ready(function () {
+		$('#list').DataTable();
+	});
+	</script>
 	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> -->
 </body>
 

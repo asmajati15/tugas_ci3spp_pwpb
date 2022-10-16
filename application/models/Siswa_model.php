@@ -53,7 +53,7 @@ class Siswa_model extends CI_Model
         $this->db->from('siswa');
         $this->db->join('kelas','kelas.id_kelas = siswa.id_kelas');      
         $this->db->join('spp','spp.id_spp = siswa.id_spp');      
-        $query = $this->db->get();
+        $query = $this->db->get()->result();
         return $query;
     }
     
@@ -77,7 +77,7 @@ class Siswa_model extends CI_Model
         return $this->db->insert($this->_table, $this);
     }
 
-    public function save()
+    /* public function save()
     {
         $post = $this->input->post();
         // $this->id_siswa = md5(uniqid());
@@ -91,9 +91,31 @@ class Siswa_model extends CI_Model
         $this->id_spp = $post["id_spp"];
         $this->upload->data()["file_name"] = $post["gambar"];
         return $this->db->insert($this->_table, $this);
+    } */
+
+    public function save()
+    {
+        $data = array(
+            "id_siswa" => mt_rand(),
+            "nisn" => $this->input->post('nisn'),
+            "nis" => $this->input->post('nis'),
+            "nama" => $this->input->post('nama'),
+            "id_kelas" => $this->input->post('id_kelas'),
+            "alamat" => $this->input->post('alamat'),
+            "no_telepon" => $this->input->post('no_telepon'),
+            "id_spp" => $this->input->post('id_spp'),
+            // "gambar" => $this->$uploaded_data['file_name'],
+            "gambar" => $this->upload->data()["file_name"]
+        );
+
+        $this->db->set($data);
+		$this->db->insert($this->_table);
+
+		// return $this->db->insert($this->_table,[
+		// ]);
     }
 
-    public function update()
+    public function updateWithoutImage()
     {
         $post = $this->input->post();
         $this->id_siswa = $post["id_siswa"];
@@ -104,11 +126,45 @@ class Siswa_model extends CI_Model
         $this->alamat = $post["alamat"];
         $this->no_telepon = $post["no_telepon"];
         $this->id_spp = $post["id_spp"];
+        $this->gambar = $post["old"];
         return $this->db->update($this->_table, $this, array('id_siswa' => $post['id_siswa']));
     }
 
+    /*
+    public function update()
+    {
+        $data = array(
+            "id_siswa" => mt_rand(),
+            "nisn" => $this->input->post('nisn'),
+            "nis" => $this->input->post('nis'),
+            "nama" => $this->input->post('nama'),
+            "id_kelas" => $this->input->post('id_kelas'),
+            "alamat" => $this->input->post('alamat'),
+            "no_telepon" => $this->input->post('no_telepon'),
+            "id_spp" => $this->input->post('id_spp'),
+            // "gambar" => $this->$uploaded_data['file_name'],
+            "gambar" => $this->upload->data()["file_name"]
+        );
+        
+        $this->db->set($data);
+		$this->db->update($this->_table, $this, array('id_siswa' => $data['id_siswa']));
+
+        // $post = $this->input->post();
+        // $this->id_siswa = $post["id_siswa"];
+        // $this->nisn = $post["nisn"];
+        // $this->nis = $post["nis"];
+        // $this->nama = $post["nama"];
+        // $this->id_kelas = $post["id_kelas"];
+        // $this->alamat = $post["alamat"];
+        // $this->no_telepon = $post["no_telepon"];
+        // $this->id_spp = $post["id_spp"];
+        // return $this->db->update($this->_table, $this, array('id_siswa' => $post['id_siswa'])); 
+    }
+    */
+
     public function delete($id)
     {
+        unlink('uploads/'.$id->gambar);
         return $this->db->delete($this->_table, array("id_siswa" => $id));
     }
 }

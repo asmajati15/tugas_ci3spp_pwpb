@@ -1,0 +1,136 @@
+.content {
+    height: 100%;
+}
+
+.banner {
+    width: 100%;
+    height: 120%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.heading-text {
+    font-size: 60px;
+    font-weight: 800;
+    margin-bottom: 40px;
+}
+
+.subheading-text {
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.button-wrap {
+    display: grid;
+    width: 400px;
+    text-align: left;
+}
+
+.btn-google {
+    background-color: white;
+    border: solid 1px;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px 50px 50px 50px;
+    margin-bottom: 20px;
+}
+.btn-google:hover {
+    background-color: rgba(0, 0, 0, 0.116);
+}
+
+.google-logo {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.btn-apple {
+    background-color: white;
+    border: solid 1px;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px 50px 50px 50px;
+    margin-bottom: 20px;
+}
+.btn-apple:hover {
+    background-color: rgba(0, 0, 0, 0.116);
+}
+
+.apple-logo {
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.btn-phone {
+    background-color: rgb(42, 117, 216);
+    border: solid 1px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 50px 50px 50px 50px;
+}
+.btn-phone:hover {
+    background-color: rgb(33, 82, 146);
+}
+
+.bi-twitter {
+    font-size: 50px;
+    color: rgb(42, 117, 216);
+}
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 30%;
+    transform: translate(-50%, -50%);
+    font-size: 350px;
+}
+input {
+    height: 60px;
+}
+
+.closebtn {
+    padding-top: 10px;
+    padding-left: 15px;
+}
+
+.dropdown {
+    border: 1px black;
+}
+
+.dropdown button {
+    border: 1px solid black;
+    height: 60px;
+}
+
+footer {
+    margin-top: 115px;
+    padding-bottom: 10px;
+}
+
+footer a {
+    font-size: 12px;
+    padding-left: 10px;
+    text-decoration: none;
+    color: black;
+}
