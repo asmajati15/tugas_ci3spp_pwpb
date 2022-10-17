@@ -155,11 +155,9 @@
 							<h5 class="mb-0">Form Edit</h5></h5>
 						</div>
 						<div class="card-body">
-                        <form action="<?php echo site_url('siswa/edit/'. $siswa->id_siswa) ?>" method="post" enctype="multipart/form-data">
-						<!-- Note: atribut action dikosongkan, artinya action-nya akan diproses 
-							oleh controller tempat vuew ini digunakan. Yakni index.php/admin/products/edit/ID --->
+                        <form action="<?php echo site_url('siswa/update/'. $siswa->id_siswa) ?>" method="post" enctype="multipart/form-data">
 
-							<input type="hidden" name="id_siswa" value="<?php echo $siswa->id_siswa ?>" />
+							<!-- <input type="hidden" name="id_siswa" value="<?php echo $siswa->id_siswa ?>" /> -->
 
 							<div class="form-group mb-4">
 								<label for="nisn">NISN</label>
@@ -234,10 +232,7 @@
 								</div>
 							</div>
 
-                            <div class="form-group mb-4">
-                                <!-- <label for="name">Photo</label> -->
-								<!-- <input class="form-control-file"
-								type="file" name="gambar" /> -->
+                            <!-- <div class="form-group mb-4">
 								<?php if ($siswa->gambar != NULL) {?>
 									<input type="hidden" name="old" value="<?php echo $siswa->gambar ?>">
 									<img alt="" src="<?php echo base_url().'uploads/'.$siswa->gambar; ?>" class="avatar avatar-sm rounded-circle me-2">
@@ -245,7 +240,7 @@
 								<?php } else {?>
 									<small>Siswa ini tidak memiliki foto</small>
 								<?php } ?>
-							</div>
+							</div> -->
 
 							<input class="btn btn-success" type="submit" name="btn" value="Save" />
 						</form>

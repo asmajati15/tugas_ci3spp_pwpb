@@ -3,6 +3,7 @@
 class Siswa_model extends CI_Model
 {
     private $_table = "siswa";
+    private $_table_login = "login";
 
     public $nisn;
     public $nis;
@@ -64,17 +65,39 @@ class Siswa_model extends CI_Model
 
     public function saveWithoutImage()
     {
-        $post = $this->input->post();
-        // $this->id_siswa = md5(uniqid());
-        $this->id_siswa = mt_rand();
-        $this->nisn = $post["nisn"];
-        $this->nis = $post["nis"];
-        $this->nama = $post["nama"];
-        $this->id_kelas = $post["id_kelas"];
-        $this->alamat = $post["alamat"];
-        $this->no_telepon = $post["no_telepon"];
-        $this->id_spp = $post["id_spp"];
-        return $this->db->insert($this->_table, $this);
+        $data = array(
+            "username" => $this->input->post('username'),
+            "password" => md5($this->input->post('password')),
+            "level" => $this->input->post('level'),
+        );
+        
+		$this->db->insert($this->_table_login, $data);
+        $insert_id = $this->db->insert_id();
+        
+		return $this->db->insert($this->_table,[
+            "id_siswa" => mt_rand(),
+            "id_login" => $insert_id,
+            "nisn" => $this->input->post('nisn'),
+            "nis" => $this->input->post('nis'),
+            "nama" => $this->input->post('nama'),
+            "id_kelas" => $this->input->post('id_kelas'),
+            "alamat" => $this->input->post('alamat'),
+            "no_telepon" => $this->input->post('no_telepon'),
+            "id_spp" => $this->input->post('id_spp'),
+		]);
+        /*
+            $post = $this->input->post();
+            // $this->id_siswa = md5(uniqid());
+            $this->id_siswa = mt_rand();
+            $this->nisn = $post["nisn"];
+            $this->nis = $post["nis"];
+            $this->nama = $post["nama"];
+            $this->id_kelas = $post["id_kelas"];
+            $this->alamat = $post["alamat"];
+            $this->no_telepon = $post["no_telepon"];
+            $this->id_spp = $post["id_spp"];
+            return $this->db->insert($this->_table, $this);
+        */
     }
 
     /* public function save()
@@ -115,19 +138,33 @@ class Siswa_model extends CI_Model
 		// ]);
     }
 
-    public function updateWithoutImage()
+    public function updateWithoutImage($id)
     {
-        $post = $this->input->post();
-        $this->id_siswa = $post["id_siswa"];
-        $this->nisn = $post["nisn"];
-        $this->nis = $post["nis"];
-        $this->nama = $post["nama"];
-        $this->id_kelas = $post["id_kelas"];
-        $this->alamat = $post["alamat"];
-        $this->no_telepon = $post["no_telepon"];
-        $this->id_spp = $post["id_spp"];
-        $this->gambar = $post["old"];
-        return $this->db->update($this->_table, $this, array('id_siswa' => $post['id_siswa']));
+        $data = array(
+            "nisn" => $this->input->post('nisn'),
+            "nis" => $this->input->post('nis'),
+            "nama" => $this->input->post('nama'),
+            "id_kelas" => $this->input->post('id_kelas'),
+            "alamat" => $this->input->post('alamat'),
+            "no_telepon" => $this->input->post('no_telepon'),
+            "id_spp" => $this->input->post('id_spp'),
+        );
+        
+        return $this->db->update($this->_table, $data, array('id_siswa' => $id));
+
+        /*
+            $post = $this->input->post();
+            $this->id_siswa = $post["id_siswa"];
+            $this->nisn = $post["nisn"];
+            $this->nis = $post["nis"];
+            $this->nama = $post["nama"];
+            $this->id_kelas = $post["id_kelas"];
+            $this->alamat = $post["alamat"];
+            $this->no_telepon = $post["no_telepon"];
+            $this->id_spp = $post["id_spp"];
+            $this->gambar = $post["old"];
+            return $this->db->update($this->_table, $this, array('id_siswa' => $post['id_siswa']));
+        */
     }
 
     /*

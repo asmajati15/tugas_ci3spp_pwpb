@@ -3,6 +3,7 @@
 class Petugas_model extends CI_Model
 {
     private $_table = "petugas";
+    private $_table_login = "login";
 
     public $username;
     public $password;
@@ -29,9 +30,10 @@ class Petugas_model extends CI_Model
 
     public function getAll()
     {
-        // return $this->db->get($this->_table)->result();
+        
         $this->db->select('*');
         $this->db->from('petugas');     
+        $this->db->join('login','login.id_login = petugas.id_login');      
         $query = $this->db->get()->result();
         return $query;
     }
@@ -43,41 +45,70 @@ class Petugas_model extends CI_Model
 
     public function saveWithoutImage()
     {
-        $post = $this->input->post();
-        $this->id_petugas = mt_rand();
-        $this->username = $post["username"];
-        $this->password = md5($post["password"]);
-        $this->nama_petugas = $post["nama_petugas"];
-        return $this->db->insert($this->_table, $this);
+        $data = array(
+            "username" => $this->input->post('username'),
+            "password" => md5($this->input->post('password')),
+            "level" => $this->input->post('level'),
+        );
+        
+		$this->db->insert($this->_table_login, $data);
+        $insert_id = $this->db->insert_id();
+        
+		return $this->db->insert($this->_table,[
+            "id_petugas" => mt_rand(),
+            "id_login" => $insert_id,
+            "nama_petugas" => $this->input->post('nama_petugas'),
+		]);
+        /*
+            $post = $this->input->post();
+            $this->id_petugas = mt_rand();
+            $this->username = $post["username"];
+            $this->password = md5($post["password"]);
+            $this->nama_petugas = $post["nama_petugas"];
+            return $this->db->insert($this->_table, $this);
+        */
     }
 
     public function save()
     {
         $data = array(
-            "id_petugas" => mt_rand(),
             "username" => $this->input->post('username'),
             "password" => md5($this->input->post('password')),
+            "level" => $this->input->post('level'),
+        );
+        
+        // $this->db->set($data);
+		$this->db->insert($this->_table_login, $data);
+        $insert_id = $this->db->insert_id();
+        
+		return $this->db->insert($this->_table,[
+            "id_petugas" => mt_rand(),
+            "id_login" => $insert_id,
             "nama_petugas" => $this->input->post('nama_petugas'),
             // "gambar" => $this->$uploaded_data['file_name'],
             "gambar" => $this->upload->data()["file_name"]
-        );
-
-        $this->db->set($data);
-		$this->db->insert($this->_table);
-
-		// return $this->db->insert($this->_table,[
-		// ]);
+		]);
     }
 
-    public function updateWithoutImage()
+    public function updateWithoutImage($id)
     {
-        $post = $this->input->post();
-        $this->id_petugas = $post["id_petugas"];
-        $this->username = $post["username"];
-        $this->password = md5($post["password"]);
-        $this->nama_petugas = $post["nama_petugas"];
-        $this->gambar = $post["old"];
-        return $this->db->update($this->_table, $this, array('id_petugas' => $post['id_petugas']));
+        $data = array(
+            "nama_petugas" => $this->input->post('nama_petugas'),
+        );
+        
+        return $this->db->update($this->_table, $data, array('id_petugas' => $id));
+
+        /* 
+            $post = $this->input->post();
+            $this->id_petugas = $post["id_petugas"];
+            $this->username = $post["username"];
+            $this->password = md5($post["password"]);
+            $this->nama_petugas = $post["nama_petugas"];
+            $this->level = $post["level"];
+            $this->id_login = $post["id_login"];
+            $this->gambar = $post["old"];
+            return $this->db->update($this->_table, $this, array('id_petugas' => $post['id_petugas']));
+        */
     }
 
     /*

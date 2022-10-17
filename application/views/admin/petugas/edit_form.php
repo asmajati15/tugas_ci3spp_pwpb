@@ -121,11 +121,6 @@
 			<!-- Header -->
 			<header class="bg-surface-primary border-bottom pt-6">
 				<div class="container-fluid">
-                    <?php if ($this->session->flashdata('success')): ?>
-                    <div class="alert alert-success" role="alert">
-                        <?php echo $this->session->flashdata('success'); ?>
-                    </div>
-                    <?php endif; ?>
 					<div class="mb-npx">
 						<div class="row align-items-center">
 							<div class="col-sm-6 col-12 mb-4 mb-sm-4">
@@ -155,16 +150,15 @@
 							<h5 class="mb-0">Form Edit</h5></h5>
 						</div>
 						<div class="card-body">
-                        <form action="<?php echo site_url('petugas/edit/'. $petugas->id_petugas) ?>" method="post" enctype="multipart/form-data">
-						<!-- Note: atribut action dikosongkan, artinya action-nya akan diproses 
-							oleh controller tempat vuew ini digunakan. Yakni index.php/admin/products/edit/ID --->
+                        <form action="<?php echo site_url('petugas/update/'. $petugas->id_petugas) ?>" method="post" enctype="multipart/form-data">
 
-							<input type="hidden" name="id_petugas" value="<?php echo $petugas->id_petugas ?>" />
+							<!-- <input type="hidden" name="id_petugas" value="<?php echo $petugas->id_petugas ?>" /> -->
+							<!-- <input type="hidden" name="id_petugas" value="<?php echo $petugas->id_login ?>" />
 
 							<div class="form-group mb-4">
 								<label for="username">Username</label>
 								<input class="form-control <?php echo form_error('username') ? 'is-invalid':'' ?>"
-								 type="text" name="username" min="0" placeholder="Example: farhan_kebab" value="<?php echo $petugas->username ?>" />
+								 type="text" name="username" min="0" placeholder="Example: farhan_kebab" value="<?php echo $login->username ?>" />
 								<div class="invalid-feedback">
 									<?php echo form_error('username') ?>
 								</div>
@@ -173,11 +167,11 @@
 							<div class="form-group mb-4">
 								<label for="password">Password</label>
 								<input class="form-control <?php echo form_error('password') ? 'is-invalid':'' ?>"
-								type="password" name="password" min="0" placeholder="Example: ********" value="<?php echo $petugas->password ?>" />
+								type="password" name="password" min="0" placeholder="Example: ********" value="<?php echo $login->password ?>" />
 								<div class="invalid-feedback">
 									<?php echo form_error('password') ?>
 								</div>
-							</div>
+							</div> -->
 
                             <div class="form-group mb-4">
 								<label for="nama_petugas">Nama</label>
@@ -188,11 +182,9 @@
 								</div>
 							</div>
 
+							<!-- <input type="hidden" name="level" value="admin">
 
                             <div class="form-group mb-4">
-                                <!-- <label for="name">Photo</label> -->
-								<!-- <input class="form-control-file"
-								type="file" name="gambar" /> -->
 								<?php if ($petugas->gambar != NULL) {?>
 									<input type="hidden" name="old" value="<?php echo $petugas->gambar ?>">
 									<img alt="" src="<?php echo base_url().'uploads/'.$petugas->gambar; ?>" class="avatar avatar-sm rounded-circle me-2">
@@ -200,7 +192,7 @@
 								<?php } else {?>
 									<small>Petugas ini tidak memiliki foto</small>
 								<?php } ?>
-							</div>
+							</div> -->
 
 							<input class="btn btn-success" type="submit" name="btn" value="Save" />
 						</form>

@@ -164,14 +164,6 @@
 							
 							<input type="hidden" name="id_siswa">
 
-                            <!-- <div class="form-group mb-4">
-								<label for="id_siswa">id_siswa</label>
-								<input class="form-control <?php echo form_error('id_siswa') ? 'is-invalid':'' ?>"
-								 type="number" name="id_siswa" min="0" placeholder="Example: 006321445" />
-								<div class="invalid-feedback">
-									<?php echo form_error('id_siswa') ?>
-								</div>
-							</div> -->
 
                             <div class="form-group mb-4">
 								<label for="nisn">NISN</label>
@@ -199,6 +191,26 @@
 									<?php echo form_error('nama') ?>
 								</div>
 							</div>
+
+							<div class="form-group mb-4">
+								<label for="username">Username</label>
+								<input class="form-control <?php echo form_error('username') ? 'is-invalid':'' ?>"
+								 type="text" name="username" min="0" placeholder="Example: farhan_kebab" />
+								<div class="invalid-feedback">
+									<?php echo form_error('username') ?>
+								</div>
+							</div>
+
+							<div class="form-group mb-4">
+								<label for="password">Password</label>
+								<input class="form-control <?php echo form_error('password') ? 'is-invalid':'' ?>"
+								 type="password" name="password" min="0" placeholder="Example: ********" />
+								<div class="invalid-feedback">
+									<?php echo form_error('password') ?>
+								</div>
+							</div>
+
+							<input type="hidden" name="level" value="siswa">
 
                             <div class="form-group mb-4">
 								<label for="id_kelas">Kelas</label>

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Jurusan</title>
+	<title>Dashboard</title>
 
 	<link rel="stylesheet" href="asset/bootstrap/bootstrap.min.css">
 	<script src="asset/bootstrap/bootstrap.min.js" defer></script>

@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>PEtugas - Tambah</title>
+	<title>Pestugas - Tambah</title>
 
 	<link rel="stylesheet" href="asset/bootstrap/bootstrap.min.css">
 	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
@@ -181,6 +181,21 @@
 									<?php echo form_error('password') ?>
 								</div>
 							</div>
+
+							<input type="hidden" name="level" value="admin">
+
+							<!-- <div class="form-group mb-4">
+								<label for="level">Level</label>
+								<select class="form-select <?php echo form_error('level') ? 'is-invalid':'' ?>"
+									aria-label="Default select example" name="level">
+									<option value="" hidden>--Pilih level--</option>
+									<option value="admin">Admin</option>
+									<option value="petugas">Petugas</option>
+								</select>
+								<div class="invalid-feedback">
+									<?php echo form_error('level') ?>
+								</div>
+							</div> -->
 
                             <div class="form-group mb-4">
 								<label for="nama_petugas">Nama</label>

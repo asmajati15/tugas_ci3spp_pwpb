@@ -8,12 +8,14 @@ class Kelas extends CI_Controller
     {
         parent::__construct();
 
-        if ($this->session->userdata('status') != "login") {
-            redirect(base_url("login"));
-        } else {
+        if ($this->session->userdata('status') == "login") {
             $this->load->model("kelas_model");
             $this->load->model("jurusan_model");
             $this->load->library('form_validation');
+        } if ($this->session->userdata('status') == "siswa") {
+            show_error('exception');
+        } else {
+            redirect(base_url("login"));
         }
     }
 

@@ -8,14 +8,20 @@ class Pembayaran extends CI_Controller
     {
         parent::__construct();
 
-        if ($this->session->userdata('status') != "login") {
-            redirect(base_url("login"));
-        } else {
+        if ($this->session->userdata('status') == "login") {
             $this->load->model("pembayaran_model");
             $this->load->model("siswa_model");
             $this->load->model("petugas_model");
             $this->load->model("spp_model");
             $this->load->library('form_validation');
+        } if ($this->session->userdata('status') == "siswa") {
+            $this->load->model("pembayaran_model");
+            $this->load->model("siswa_model");
+            $this->load->model("petugas_model");
+            $this->load->model("spp_model");
+            $this->load->library('form_validation');
+        } else {
+            redirect(base_url("login"));
         }
     }
 

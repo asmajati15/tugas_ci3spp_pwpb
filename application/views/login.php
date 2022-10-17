@@ -50,11 +50,11 @@
 						<form action="<?php echo base_url('index.php/login/aksi_login'); ?>" method="post">
 							<div class="mb-5">
 								<label class="form-label" for="username">Username</label>
-								<input type="text" class="form-control form-control-muted" id="username" name="username">
+								<input type="text" class="form-control form-control-muted" id="username" name="username" placeholder="user.name">
 							</div>
 							<div class="mb-5">
 								<label class="form-label" for="password">Password</label>
-								<input type="password" class="form-control form-control-muted" id="password" name="password"
+								<input type="password" class="form-control form-control-muted" id="password" name="password" placeholder="********"
 									autocomplete="current-password">
 							</div>
 							<div class="mb-5">

@@ -147,6 +147,18 @@
 									</a>
 								</div>
 							</div>
+							<div class="col text-sm pb-3">
+								<?php if ($this->session->flashdata('success')): ?>
+								<div class="alert alert-success" role="alert">
+									<?php echo $this->session->flashdata('success'); ?>
+								</div>
+								<?php endif; ?>
+								<?php if ($this->session->flashdata('deleted')): ?>
+								<div class="alert alert-danger" role="alert">
+									<?php echo $this->session->flashdata('deleted'); ?>
+								</div>
+								<?php endif; ?>
+							</div>
 						</div>
 					</div>
 				</div>

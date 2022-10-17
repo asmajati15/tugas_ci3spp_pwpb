@@ -8,19 +8,23 @@ class Petugas extends CI_Controller
     {
         parent::__construct();
 
-        if ($this->session->userdata('status') != "login") {
-            redirect(base_url("login"));
-        } else {
-            $this->load->model("petugas_model");
-            $this->load->library('form_validation');
+        if($this->session->userdata('masuk') != TRUE){
+            $url=base_url();
+            redirect($url);
         }
     }
 
     public function index()
     {
+        if ($this->session->userdata('status') == "login") {
+            $this->load->model("petugas_model");
+            $this->load->library('form_validation');
+            $data["petugass"] = $this->petugas_model->getAll();
+            $this->load->view("admin/petugas/list", $data);
+        } else {
+            show_error('exception');
+        }
         // $data["petugass"] = $this->petugas_model->getAll();
-        $data["petugass"] = $this->petugas_model->getAll();
-        $this->load->view("admin/petugas/list", $data);
     }
 
     public function add()
@@ -51,6 +55,22 @@ class Petugas extends CI_Controller
         $this->load->view("admin/petugas/new_form");
     }
 
+    public function edit($id)
+    {
+        $petugas = $this->petugas_model;
+        $data["petugas"] = $petugas->getById($id);
+        if (!$data["petugas"]) show_404();
+        $this->load->view("admin/petugas/edit_form", $data);
+    }
+    
+    public function update($id)
+    {
+        $this->petugas_model->updateWithoutImage($id);
+        $this->session->set_flashdata('success', 'Data berhasil di update !');
+        return redirect(site_url('petugas'));
+    }
+
+    /*
     public function edit($id = null)
     {
         if (!isset($id)) redirect('petugas');
@@ -82,12 +102,14 @@ class Petugas extends CI_Controller
         
         $this->load->view("admin/petugas/edit_form", $data);
     }
+    */
 
     public function delete($id=null)
     {
         if (!isset($id)) show_404();
         
         if ($this->petugas_model->delete($id)) {
+            $this->session->set_flashdata('deleted', 'Data berhasil di hapus !');
             redirect(site_url('petugas'));
         }
     }

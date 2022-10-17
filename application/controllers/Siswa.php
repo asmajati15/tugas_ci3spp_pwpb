@@ -8,13 +8,18 @@ class Siswa extends CI_Controller
     {
         parent::__construct();
 
-        if ($this->session->userdata('status') != "login") {
-            redirect(base_url("login"));
-        } else {
+        if ($this->session->userdata('status') == "login") {
             $this->load->model("siswa_model");
             $this->load->model("kelas_model");
             $this->load->model("spp_model");
             $this->load->library('form_validation');
+        } if ($this->session->userdata('status') == "siswa") {
+            $this->load->model("siswa_model");
+            $this->load->model("kelas_model");
+            $this->load->model("spp_model");
+            $this->load->library('form_validation');
+        } else {
+            redirect(base_url("login"));
         }
     }
 
@@ -55,6 +60,24 @@ class Siswa extends CI_Controller
         $this->load->view("admin/siswa/new_form", array_merge($data, $data2));
     }
 
+    public function edit($id)
+    {
+        $siswa = $this->siswa_model;
+        $data["siswa"] = $siswa->getById($id);
+        $data2["kelass"] = $this->kelas_model->getAll();
+        $data3["spps"] = $this->spp_model->getAll();
+        if (!$data["siswa"]) show_404();
+        $this->load->view("admin/siswa/edit_form", array_merge($data, $data2, $data3));
+    }
+    
+    public function update($id)
+    {
+        $this->siswa_model->updateWithoutImage($id);
+        $this->session->set_flashdata('success', 'Data berhasil di update !');
+        return redirect(site_url('siswa'));
+    }
+
+    /*
     public function edit($id = null)
     {
         if (!isset($id)) redirect('siswa');
@@ -88,6 +111,7 @@ class Siswa extends CI_Controller
         
         $this->load->view("admin/siswa/edit_form", array_merge($data, $data2, $data3));
     }
+    */
 
     public function delete($id=null)
     {
