@@ -91,4 +91,16 @@ class Petugas extends CI_Controller
             redirect(site_url('petugas'));
         }
     }
+
+    public function pdf()
+    {
+        $data["petugass"] = $this->petugas_model->getAll();
+    
+        $this->load->library('pdf');
+    
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "laporan-petugas.pdf";
+        $this->pdf->load_view('admin/petugas/laporan_pdf', $data);
+
+    }
 }

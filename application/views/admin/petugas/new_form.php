@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bootstrap demo</title>
+	<title>PEtugas - Tambah</title>
 
 	<link rel="stylesheet" href="asset/bootstrap/bootstrap.min.css">
 	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
@@ -33,8 +33,9 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<!-- Brand -->
-				<a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0" href="#">
-					<img src="https://preview.webpixels.io/web/img/logos/clever-primary.svg" alt="...">
+				<a class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0 d-flex" style="width: 137px; height: 36px;" href="#">
+					<img src="<?php echo base_url().'asset/img/logosmkn4.png'?>" alt="...">
+					<h5 style="margin-left: 5px; align-items:center;">Aplikasi SPP</h5>
 				</a>
 				<!-- User menu (mobile) -->
 				<div class="navbar-user d-lg-none">

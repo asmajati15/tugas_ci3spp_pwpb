@@ -63,4 +63,15 @@ class Spp extends CI_Controller
             redirect(site_url('spp'));
         }
     }
+
+    public function pdf()
+    {
+        $data["spps"] = $this->spp_model->getAll();
+    
+        $this->load->library('pdf');
+    
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "laporan-spp.pdf";
+        $this->pdf->load_view('admin/spp/laporan_pdf', $data);
+    }
 }

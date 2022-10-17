@@ -4,10 +4,9 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Kelas - Edit</title>
+	<title>Jurusan</title>
 
 	<link rel="stylesheet" href="asset/bootstrap/bootstrap.min.css">
-	<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"> -->
 	<script src="asset/bootstrap/bootstrap.min.js" defer></script>
 
 	<style>
@@ -108,7 +107,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="<?php echo base_url('login/logout'); ?>">
 								<i class="bi bi-box-arrow-left"></i> Logout
 							</a>
 						</li>
@@ -121,27 +120,11 @@
 			<!-- Header -->
 			<header class="bg-surface-primary border-bottom pt-6">
 				<div class="container-fluid">
-                    <?php if ($this->session->flashdata('success')): ?>
-                    <div class="alert alert-success" role="alert">
-                        <?php echo $this->session->flashdata('success'); ?>
-                    </div>
-                    <?php endif; ?>
 					<div class="mb-npx">
 						<div class="row align-items-center">
 							<div class="col-sm-6 col-12 mb-4 mb-sm-4">
 								<!-- Title -->
-								<h1 class="h2 mb-0 ls-tight">Application</h1>
-							</div>
-							<!-- Actions -->
-							<div class="col-sm-6 col-12 text-sm-end">
-								<div class="mx-n1">
-									<a href="<?php echo site_url('kelas') ?>" class="btn d-inline-flex btn-sm btn-primary mx-1">
-										<span class=" pe-2">
-											<i class="bi bi-arrow-left"></i>
-										</span>
-										<span>Back</span>
-									</a>
-								</div>
+								<h1 class="h2 mb-0 ls-tight">Aplikasi SPP</h1>
 							</div>
 						</div>
 					</div>
@@ -152,47 +135,13 @@
 				<div class="container-fluid">
 					<div class="card mb-7">
 						<div class="card-header">
-							<h5 class="mb-0">Form Edit</h5></h5>
-						</div>
-						<div class="card-body">
-                        <form action="<?php echo site_url('kelas/edit/'. $kelas->id_kelas) ?>" method="post" enctype="multipart/form-data">
-						<!-- Note: atribut action dikosongkan, artinya action-nya akan diproses 
-							oleh controller tempat vuew ini digunakan. Yakni index.php/admin/products/edit/ID --->
-
-							<input type="hidden" name="id_kelas" value="<?php echo $kelas->id_kelas ?>" />
-
-							<div class="form-group mb-4">
-								<label for="nama_kelas">Nama Kelas</label>
-								<input class="form-control <?php echo form_error('nama_kelas') ? 'is-invalid':'' ?>"
-								 type="text" name="nama_kelas" min="0" placeholder="Example: 0061334453" value="<?php echo $kelas->nama_kelas ?>" />
-								<div class="invalid-feedback">
-									<?php echo form_error('nama_kelas') ?>
-								</div>
-							</div>
-
-							<div class="form-group mb-4">
-								<label for="id_jurusan">Jurusan</label>
-								<select class="form-select <?php echo form_error('id_jurusan') ? 'is-invalid':'' ?>"
-									aria-label="Default select example" name="id_jurusan">
-									<option value="" hidden>--Pilih jurusan--</option>
-									<?php foreach ($jurusans as $jurusan): ?>
-										<option <?php if($kelas->id_jurusan ==$jurusan->id_jurusan){ echo 'selected="selected"'; } ?> value="<?php echo $kelas->id_jurusan ?>"><?php echo $jurusan->nama_jurusan ?></option>
-									<?php endforeach; ?>
-								</select>
-								<div class="invalid-feedback">
-									<?php echo form_error('id_jurusan') ?>
-								</div>
-							</div>
-
-							<input class="btn btn-success" type="submit" name="btn" value="Save" />
-						</form>
+							<h5 class="mb-0">Selamat Datang Kembali</h5>
 						</div>
 					</div>
 				</div>
 			</main>
 		</div>
 	</div>
-	<!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script> -->
 </body>
 
 </html>

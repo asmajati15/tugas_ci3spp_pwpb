@@ -66,4 +66,16 @@ class Kelas extends CI_Controller
             redirect(site_url('kelas'));
         }
     }
+
+    public function pdf()
+    {
+        $data["kelass"] = $this->kelas_model->getAll();
+    
+        $this->load->library('pdf');
+    
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "laporan-kelas.pdf";
+        $this->pdf->load_view('admin/kelas/laporan_pdf', $data);
+
+    }
 }

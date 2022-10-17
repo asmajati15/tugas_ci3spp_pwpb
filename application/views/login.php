@@ -2,112 +2,78 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login or Signup</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link rel="stylesheet" href="asset/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Login or Signup</title>
+	<link rel="stylesheet" href="asset/bootstrap/bootstrap.min.css">
+	<script src="asset/bootstrap/bootstrap.min.js" defer></script>
+	<link rel="stylesheet" href="asset/style.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+	<style>
+		@import url("https://unpkg.com/@webpixels/css@1.1.5/dist/index.css");
+
+		/* Bootstrap Icons */
+		@import url("https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css");
+
+	</style>
 </head>
 
 <body>
-    <div class="content">
-    <div class="row">
-        <div class="col-sm-7 col-md-7">
-            <img src="asset/img/twiter.png" class="banner" alt="">
-            <i class="bi-twitter centered text-white"></i>
-        </div>
-        <div class="col text-banner">
-            <i class="bi-twitter"></i>
-            <h1 class="heading-text">Happening now</h1>
-            <h3 class="subheading-text">Join twitter today.</h3>
-            <div class="button-wrap">
-                <button class="btn-google"data-bs-toggle="modal" data-bs-target="#modal1"><b>Log in into existing account</b></button>
-                <p class="d-flex justify-content-center">or</p>
-                <button class="btn-phone"data-bs-toggle="modal" data-bs-target="#modal2"><b>Sign up with username</b></button>
-                <p style="font-size: 10px; padding-top: 5px;">By signing up, you agree to the <a href="">Terms of Service</a> and <a href="">Privacy Policy</a>, including <a href="">Cookie Use</a>.</p>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="modal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 600px;">
-        <div class="modal-content">
-            <div class="closebtn">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style="padding-left: 90px; padding-right: 90px; padding-bottom: 50px;">
-            <h2 class="modal-title pb-4" id="exampleModalLabel">Login Use Your Account</h2>
-                <form action="<?php echo base_url('index.php/login/aksi_login'); ?>" method="post">		
-                    <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Username" name="username">
-                    </div>
-                    <div class="mb-3">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
-                    </div>
-                    <button style="width: 100%; height: 50px; border-radius: 50px;" type="submit" class="btn btn-primary" value="Login"><b>Submit</b></button>
-                </form>
-            </div>
-        </div>
-        </div>
-    </div>
-    <div class="modal fade" id="modal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" style="max-width: 600px;">
-        <div class="modal-content">
-            <div class="closebtn">
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body" style="padding-left: 90px; padding-right: 90px;">
-            <h2 class="modal-title pb-4" id="exampleModalLabel">Create Your Account</h2>
-                <form>
-                <div class="mb-3">
-                    <input type="text" class="form-control" placeholder="Username" name="username">
-                    </div>
-                    <div class="mb-3">
-                    <input type="password" class="form-control" placeholder="Password" name="password">
-                    </div>
-                    <button style="width: 100%; height: 50px; border-radius: 50px;" type="submit" class="btn btn-primary" value="Login"><b>Submit</b></button>
-                </form>
-            </div>
-        </div>
-        </div>
-    </div>
-
-    <footer style="padding-left: 15px; padding-right: 15px; padding-top: 20px;">
-        <div class="row">
-            <div class="col">
-                <a href="">About</a>
-                <a href="">Help Center</a>
-                <a href="">Terms Of Service</a>
-                <a href="">Privacy Policy</a>
-                <a href="">Cookie Policy</a>
-                <a href="">Accessibility</a>
-                <a href="">Ads Info</a>
-                <a href="">Blog</a>
-                <a href="">Status</a>
-                <a href="">Careers</a>
-                <a href="">Brand Resources</a>
-                <a href="">Advertising</a>
-                <a href="">Marketing</a>
-                <a href="">Twitter For Business</a>
-                <a href="">Developers</a>
-            </div>
-            <div class="row">
-                <div class="col d-flex" style="justify-content: center;">
-                <a href="">Directory</a>
-                <a href="">Settings</a>
-                <a href="">&copy; 2022 Twitter, inc.</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-        crossorigin="anonymous"></script>
+	<div class="px-5 py-5 p-lg-0 bg-surface-secondary">
+		<div class="d-flex justify-content-center">
+			<div
+				class="col-lg-5 col-xl-4 p-12 p-xl-20 position-fixed start-0 top-0 h-screen overflow-y-hidden bg-primary d-none d-lg-flex flex-column">
+				<!-- Logo -->
+				<a class="d-block h-50" href="#">
+					<img src="<?php echo base_url().'asset/img/logosmkn4.png'?>" class="h-50" alt="...">
+				</a>
+				<!-- Title -->
+				<div class="mt-2">
+					<h1 class="ls-tight font-bolder display-6 text-white mb-5">
+						Aplikasi SPP SMKN 4 Bogor
+					</h1>
+					<p class="text-white text-opacity-75">
+						Hadir untuk memudahkan dalam proses pembayaran SPP.
+					</p>
+				</div>
+			</div>
+			<div
+				class="col-12 col-md-9 col-lg-7 offset-lg-5 border-left-lg min-h-lg-screen d-flex flex-column justify-content-center py-lg-16 px-lg-20 position-relative">
+				<div class="row">
+					<div class="col-lg-10 col-md-9 col-xl-6 mx-auto ms-xl-0">
+						<div class="mt-10 mt-lg-5 mb-6 d-flex align-items-center d-lg-block">
+							<span class="d-inline-block d-lg-block h1 mb-lg-6 me-3">👋</span>
+							<h1 class="ls-tight font-bolder h2">
+								Selamat Datang!
+							</h1>
+						</div>
+						<form action="<?php echo base_url('index.php/login/aksi_login'); ?>" method="post">
+							<div class="mb-5">
+								<label class="form-label" for="username">Username</label>
+								<input type="text" class="form-control form-control-muted" id="username" name="username">
+							</div>
+							<div class="mb-5">
+								<label class="form-label" for="password">Password</label>
+								<input type="password" class="form-control form-control-muted" id="password" name="password"
+									autocomplete="current-password">
+							</div>
+							<div class="mb-5">
+							</div>
+							<div>
+								<button type="submit" class="btn btn-primary w-full" value="Login">
+									Sign in
+								</button>
+							</div>
+						</form>
+						<div class="my-6">
+							<small>Don't have an account?</small>
+							<a href="#" class="text-warning text-sm font-semibold">Sign up</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 </html>

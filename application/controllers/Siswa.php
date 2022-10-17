@@ -97,4 +97,16 @@ class Siswa extends CI_Controller
             redirect(site_url('siswa'));
         }
     }
+
+    public function pdf()
+    {
+        $data["siswas"] = $this->siswa_model->getAll();
+    
+        $this->load->library('pdf');
+    
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "laporan-siswa.pdf";
+        $this->pdf->load_view('admin/siswa/laporan_pdf', $data);
+
+    }
 }

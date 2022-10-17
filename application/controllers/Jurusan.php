@@ -63,4 +63,16 @@ class Jurusan extends CI_Controller
             redirect(site_url('jurusan'));
         }
     }
+
+    public function pdf()
+    {
+        $data["jurusans"] = $this->jurusan_model->getAll();
+    
+        $this->load->library('pdf');
+    
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "laporan-jurusan.pdf";
+        $this->pdf->load_view('admin/jurusan/laporan_pdf', $data);
+
+    }
 }

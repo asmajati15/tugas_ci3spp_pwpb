@@ -72,4 +72,16 @@ class Pembayaran extends CI_Controller
             redirect(site_url('pembayaran'));
         }
     }
+
+    public function pdf()
+    {
+        $data["pembayarans"] = $this->pembayaran_model->getAll()->result();
+    
+        $this->load->library('pdf');
+    
+        $this->pdf->setPaper('A4', 'potrait');
+        $this->pdf->filename = "laporan-pembayaran.pdf";
+        $this->pdf->load_view('admin/pembayaran/laporan_pdf', $data);
+
+    }
 }
