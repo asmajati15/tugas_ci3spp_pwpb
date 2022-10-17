@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 16, 2022 at 07:02 PM
+-- Generation Time: Oct 18, 2022 at 01:27 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.0.14
 
@@ -57,7 +57,13 @@ CREATE TABLE `jurusan` (
 
 INSERT INTO `jurusan` (`id_jurusan`, `nama_jurusan`) VALUES
 (76594520, 'Rekayasa Perangkat Lunak'),
-(1957794685, 'Teknik Komputer Jaringan');
+(411210389, 'Teknik Kendaraan Ringan dan Otomotif'),
+(411978004, 'Teknik Jaringan Komputer dan Telekomunikasi'),
+(1371980681, 'Pemodelan Perangkat Lunak dan Gim'),
+(1485900475, 'Teknik Fabrikasi Logam Manufaktur'),
+(1555663558, 'Teknik Otomotif'),
+(1957794685, 'Teknik Komputer Jaringan'),
+(2014969133, 'Teknik Pengelasan dan Fabrikasi Logam');
 
 -- --------------------------------------------------------
 
@@ -76,7 +82,59 @@ CREATE TABLE `kelas` (
 --
 
 INSERT INTO `kelas` (`id_kelas`, `nama_kelas`, `id_jurusan`) VALUES
-(672054852, 'XII RPL 2', 76594520);
+(44002996, 'XI TKRO 2', 411210389),
+(76200860, 'XIII TFLM', 1485900475),
+(160179506, 'XII TKJ 2', 1957794685),
+(323375115, 'XI RPL 1', 76594520),
+(346842056, 'X TJKT 2', 411978004),
+(432466614, 'XII TKJ 3', 1957794685),
+(497968789, 'X TJKT 3', 411978004),
+(596506379, 'XII TKRO 3', 411210389),
+(607183189, 'X TPFL 2', 2014969133),
+(672054852, 'XII RPL 2', 76594520),
+(736447038, 'XI TKRO 1', 411210389),
+(859790843, 'X PPLG 3', 1371980681),
+(953529355, 'XI RPL 2', 76594520),
+(1057806286, 'XII RPL 1', 76594520),
+(1172976314, 'XI TKJ 3', 1957794685),
+(1206348681, 'XII TKRO 1', 411210389),
+(1240662583, 'XII TFLM 1', 1485900475),
+(1330170315, 'X PPLG 2', 1371980681),
+(1391071044, 'XII TKJ 1', 1957794685),
+(1413722961, 'XI TKJ 1', 1957794685),
+(1438099212, 'XII TKRO 2', 411210389),
+(1471642812, 'X TO 2', 1555663558),
+(1491192528, 'XI TFLM 1', 1485900475),
+(1562308429, 'XI TKRO 3', 411210389),
+(1572731182, 'X TJKT 1', 411978004),
+(1622395551, 'X TO 1', 1555663558),
+(1732948247, 'X TPFL 1', 2014969133),
+(1868057885, 'XI TKJ 2', 1957794685),
+(1876897914, 'X PPLG 1', 1371980681),
+(1983994736, 'XI TFLM 2', 1485900475),
+(2005571005, 'XII TFLM 2', 1485900475);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `id_login` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `level` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `login`
+--
+
+INSERT INTO `login` (`id_login`, `username`, `password`, `level`) VALUES
+(2, 'antum', '0192023a7bbd73250516f069df18b500', 'admin'),
+(3, 'root', 'e71636337120c5d8763e16d0aceb4776', 'siswa'),
+(4, 'admin', '0192023a7bbd73250516f069df18b500', 'siswa');
 
 -- --------------------------------------------------------
 
@@ -116,13 +174,6 @@ CREATE TABLE `pembayaran` (
   `jumlah_bayar` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `pembayaran`
---
-
-INSERT INTO `pembayaran` (`id_pembayaran`, `id_siswa`, `id_petugas`, `id_spp`, `tanggal_bayar`, `jumlah_bayar`) VALUES
-(65430493, 337564002, 269793717, 2, '2022-10-14', 'Rp150.000');
-
 -- --------------------------------------------------------
 
 --
@@ -131,20 +182,17 @@ INSERT INTO `pembayaran` (`id_pembayaran`, `id_siswa`, `id_petugas`, `id_spp`, `
 
 CREATE TABLE `petugas` (
   `id_petugas` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
   `nama_petugas` varchar(255) NOT NULL,
   `gambar` varchar(255) DEFAULT NULL,
-  `level` enum('admin','petugas') DEFAULT 'admin'
+  `id_login` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `petugas`
 --
 
-INSERT INTO `petugas` (`id_petugas`, `username`, `password`, `nama_petugas`, `gambar`, `level`) VALUES
-(269793717, 'antum', '0c909a141f1f2c0a1cb602b0b2d7d050', 'Antum Biadab Sekali', 'Asal-Lo-Tau-Ya-Dek-1024x10241.jpg', NULL),
-(1416497648, 'farhan', '105dad91250a07b716d6a714a3e676b8', 'Farhan Kebab', NULL, NULL);
+INSERT INTO `petugas` (`id_petugas`, `nama_petugas`, `gambar`, `id_login`) VALUES
+(1171318446, 'Antum Biadab Sekali', 'Asal-Lo-Tau-Ya-Dek-1024x10241.jpg', 2);
 
 -- --------------------------------------------------------
 
@@ -161,15 +209,16 @@ CREATE TABLE `siswa` (
   `alamat` varchar(255) NOT NULL,
   `no_telepon` varchar(255) NOT NULL,
   `id_spp` int(11) NOT NULL,
-  `gambar` varchar(255) DEFAULT NULL
+  `gambar` varchar(255) DEFAULT NULL,
+  `id_login` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `siswa`
 --
 
-INSERT INTO `siswa` (`id_siswa`, `nisn`, `nis`, `nama`, `id_kelas`, `alamat`, `no_telepon`, `id_spp`, `gambar`) VALUES
-(337564002, '1754583921', '1568390127', 'Fikri Rawon', 672054852, 'Jl. Tamburello, Imola', '+621829182219', 1297103068, 'Asal-Lo-Tau-Ya-Dek-1024x1024.jpg');
+INSERT INTO `siswa` (`id_siswa`, `nisn`, `nis`, `nama`, `id_kelas`, `alamat`, `no_telepon`, `id_spp`, `gambar`, `id_login`) VALUES
+(174583770, '2362323', '3263266', 'AAs', 1471642812, 'Jl. Tamburello, Imola', '+621829182219', 1, NULL, 4);
 
 -- --------------------------------------------------------
 
@@ -193,66 +242,6 @@ INSERT INTO `spp` (`tahun_ajaran`, `id_spp`, `nominal`) VALUES
 ('2020/2021', 3, 'Rp150.000'),
 ('2019/2020', 1297103068, 'Rp200.000'),
 ('2018/2019', 1924627052, 'Rp200.000');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_login`
---
-
-CREATE TABLE `tbl_login` (
-  `nis` int(11) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_login`
---
-
-INSERT INTO `tbl_login` (`nis`, `username`, `password`) VALUES
-(290290, 'ana', 'antum'),
-(45, 'loli', 'lol'),
-(0, 'ad', '$2y$10$S7AddEejzHAWmfJszLjbF.lOatDr8P7KdYveYPSfhFnYov9jKtt36'),
-(0, 'sd', '$2y$10$ik8WjcmCqyM/JKq6QewjbeNRqRUcTo/DV7j14pvJhMRwnEJr8wqO6'),
-(0, 'aa', '$2y$10$nd75hkwviaB0Fv1YLSQCZ.66wDnxHBb/KakJZ3BdonvMPIlOYLYpe'),
-(0, 'sds', '$2y$10$B6fHEp8AMV9HUSV0v1377.ZrVTrN8pUGFEGIaI42EDhmuxxCgREU.'),
-(0, 'af', '$2y$10$/jW4g988HeYQ8SDc/SWg1O5KJTbXtrMlLmyTOLYFvtYrl3nHo3x0G'),
-(0, 'aaa', '$2y$10$WUfKwBpeB5FLJdLTvGPqr./qiy0IYR3d/eo6KPnMWzZPYeNTnKSEq'),
-(0, 'ww', '$2y$10$uTQftvZIh76exiaAOl4g9OQlSrq9YN2psc4MMDvIp2gz18V4PBt36'),
-(0, 'rr', '$2y$10$SgqZlvTUuNWTJHJVL0agX.M1ae4cNw11FIQE6QUlnsuyCKZD6d6la'),
-(0, 'ee', '$2y$10$lqvfrqDjmWGygKNl5OTy/elMi0Sqh/nm7dKjDhwVSsw2MFynE4nXG'),
-(0, 'dd', '$2y$10$Jq.E7vp9EenO4XJDNy3K8OiLSISw9JQj79NoCf4hGyG/c3tCTLI8K'),
-(0, 'ff', '$2y$10$f1L4IwiPAyIEhSvvd15QaOoY/.XNCmcWjPljOLO1kk3In8Msun6bq'),
-(0, 'gg', '$2y$10$7t9GHjNJ6TF0pFIkrWrwzeHE6PPDb8zjLEqt8DcW76mycAoTPSV7a'),
-(0, 'ujang', '$2y$10$/eQmDR7A9EMt9MoY10b75OfMfoCfMX4cOtQ6LovP3SduyXwtn8ygq'),
-(0, 'usman', 'usman'),
-(122, 'aaaaa', '$2y$10$hSjH9kv/3E9DPrnUP5dTq.myx4m5jpR1KWDkMwJXGHjVndWDrMjQe'),
-(234, 'aku', '$2y$10$mb2f8LmgmBPnnTENONs1..NqADzoMlMYZ/DnDp17Kj1/BVUlmyBOK'),
-(99, 'gua', 'gua'),
-(12333, 'jaja', 'jaja'),
-(0, 'uus', 'uus'),
-(0, 'kuring', 'kuirng');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_siswa`
---
-
-CREATE TABLE `tbl_siswa` (
-  `nis` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
-  `alamat` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_siswa`
---
-
-INSERT INTO `tbl_siswa` (`nis`, `nama`, `alamat`) VALUES
-(89, 'hliul', 'ujti'),
-(12345, 'gibran', 'gunung');
 
 --
 -- Indexes for dumped tables
@@ -278,6 +267,12 @@ ALTER TABLE `kelas`
   ADD KEY `id_jurusan` (`id_jurusan`);
 
 --
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`id_login`);
+
+--
 -- Indexes for table `pegawai`
 --
 ALTER TABLE `pegawai`
@@ -296,7 +291,8 @@ ALTER TABLE `pembayaran`
 -- Indexes for table `petugas`
 --
 ALTER TABLE `petugas`
-  ADD PRIMARY KEY (`id_petugas`);
+  ADD PRIMARY KEY (`id_petugas`),
+  ADD KEY `id_login` (`id_login`);
 
 --
 -- Indexes for table `siswa`
@@ -305,19 +301,14 @@ ALTER TABLE `siswa`
   ADD PRIMARY KEY (`id_siswa`) USING BTREE,
   ADD KEY `id_kelas` (`id_kelas`),
   ADD KEY `nis` (`nis`),
-  ADD KEY `id_spp` (`id_spp`);
+  ADD KEY `id_spp` (`id_spp`),
+  ADD KEY `id_login` (`id_login`);
 
 --
 -- Indexes for table `spp`
 --
 ALTER TABLE `spp`
   ADD PRIMARY KEY (`id_spp`);
-
---
--- Indexes for table `tbl_siswa`
---
-ALTER TABLE `tbl_siswa`
-  ADD PRIMARY KEY (`nis`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -333,7 +324,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `kelas`
 --
 ALTER TABLE `kelas`
-  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=672054853;
+  MODIFY `id_kelas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2005571006;
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `id_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `pegawai`
@@ -360,12 +357,6 @@ ALTER TABLE `spp`
   MODIFY `id_spp` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1924627053;
 
 --
--- AUTO_INCREMENT for table `tbl_siswa`
---
-ALTER TABLE `tbl_siswa`
-  MODIFY `nis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12346;
-
---
 -- Constraints for dumped tables
 --
 
@@ -384,11 +375,18 @@ ALTER TABLE `pembayaran`
   ADD CONSTRAINT `pembayaran_ibfk_3` FOREIGN KEY (`id_spp`) REFERENCES `spp` (`id_spp`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `petugas`
+--
+ALTER TABLE `petugas`
+  ADD CONSTRAINT `petugas_ibfk_1` FOREIGN KEY (`id_login`) REFERENCES `login` (`id_login`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `siswa`
 --
 ALTER TABLE `siswa`
   ADD CONSTRAINT `siswa_ibfk_1` FOREIGN KEY (`id_kelas`) REFERENCES `kelas` (`id_kelas`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `siswa_ibfk_2` FOREIGN KEY (`id_spp`) REFERENCES `spp` (`id_spp`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `siswa_ibfk_2` FOREIGN KEY (`id_spp`) REFERENCES `spp` (`id_spp`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `siswa_ibfk_3` FOREIGN KEY (`id_login`) REFERENCES `login` (`id_login`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
